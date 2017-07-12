@@ -11,27 +11,36 @@
 <div class="general">
     <h1 class="general">Register</h1>
     <form method="post" action="/data/login/">
+        <label for="username">
+            Username
+        </label>
         <input name="username"
                id="username"
                type="text"
                placeholder="username"
                class="form-control general"/>
+        <label for="password">
+            Password
+        </label>
         <input name="password"
                id="password"
                type="password"
                placeholder="password"
                class="form-control general"/>
+        <label for="verify">
+            Verify Password
+        </label>
         <input name="verify"
                id="verify"
                type="password"
                placeholder="password"
                class="form-control general"/>
-        <button type="submit"
-                class="btn btn-block btn-primary general">
-            Register
-        </button>
     </form>
 
+    <a href="./profile.html"
+       class="btn btn-block btn-primary general">
+        Register
+    </a>
     <a href="./login.html"
        class="btn btn-block btn-primary cancel">
         Cancel

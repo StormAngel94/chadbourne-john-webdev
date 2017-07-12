@@ -7,8 +7,9 @@
     <link href="./style.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-    <div class="header">
+<body class="withHeader withFooter">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
         <div class="left">
         <h1 class="leftHeader">
             Profile
@@ -20,6 +21,7 @@
         </h1>
         </div>
     </div>
+    </nav>
 
     <div class="main general">
         <form method="post" action="data/profile">
@@ -30,7 +32,7 @@
                    value="jchadbourne"
                    id="username"
                    type="text"
-                   placeholder="Username"
+                   readonly
                    class="form-control general"/>
             <label for="email">
                 Email:
@@ -38,8 +40,8 @@
             <input name="email"
                    value="chadbourne.jo@husky.neu.edu"
                    id="email"
-                   type="text"
-                   placeholder="Email"
+                   type="email"
+                   placeholder="you@somewhere.com"
                    class="form-control general"/>
             <label for="fName">
                 First Name:
@@ -69,10 +71,13 @@
             Logout
         </a>
     </div>
-    <div class="footer">
-        <div class="right floatVertical">
-            <img src="./PersonProfile.png" class="tiny">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container footer">
+            <div class="right floatVertical">
+                <img src="./PersonProfile.png" class="tiny">
+            </div>
         </div>
-    </div>
+    </nav>
+
 </body>
 </html>
