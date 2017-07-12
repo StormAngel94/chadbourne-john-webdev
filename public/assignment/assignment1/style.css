@@ -39,11 +39,11 @@ div.footer {
     height: 75px;
 }
 
-div.left {
+.left {
     float: left;
 }
 
-div.right {
+.right {
     float: right;
 }
 
@@ -91,4 +91,14 @@ a.cancel:hover {
 img.tiny {
     width: 75px;
     height: 50px;
+}
+
+img.miniscule {
+    width: 30px;
+    height: 15px;
+}
+
+a.normal {
+    color: white;
+    text-decoration: none;
 }
