@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1: Register</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="general">
+    <h1 class="general">Register</h1>
+    <form method="post" action="/data/login/">
+        <input name="username"
+               id="username"
+               type="text"
+               placeholder="username"
+               class="form-control general"/>
+        <input name="password"
+               id="password"
+               type="password"
+               placeholder="password"
+               class="form-control general"/>
+        <input name="verify"
+               id="verify"
+               type="password"
+               placeholder="password"
+               class="form-control general"/>
+        <button type="submit"
+                class="btn btn-block btn-primary general">
+            Register
+        </button>
+    </form>
+
+    <a href="./login.html"
+       class="btn btn-block btn-primary cancel">
+        Cancel
+    </a>
+</div>
+</body>
+</html>

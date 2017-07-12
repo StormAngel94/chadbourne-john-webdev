@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1: Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="general">
+    <h1 class="general">Login</h1>
+    <form method="post" action="/data/login/">
+        <input name="username"
+               id="username"
+               type="text"
+               placeholder="username"
+               class="form-control general"/>
+        <input name="password"
+               id="password"
+               type="password"
+               placeholder="password"
+               class="form-control general"/>
+        <button type="submit"
+                class="btn btn-block btn-primary general">
+            Login
+        </button>
+    </form>
+
+    <a href="./register.html"
+       class="btn btn-block btn-primary register">
+        Register
+    </a>
+    </div>
+</body>
+</html>
