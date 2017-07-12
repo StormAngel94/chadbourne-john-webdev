@@ -5,15 +5,18 @@ div.general {
 
 input.general {
     margin-bottom: 10px;
+    height: 50px;
 }
 
 button.general {
     margin-bottom: 10px;
+    height: 50px;
 }
 
 a.register {
     background-color: forestgreen;
     border-color: darkgreen;
+    height: 50px;
 }
 
 a.register:hover {
@@ -23,6 +26,7 @@ a.register:hover {
 a.cancel {
     background-color: red;
     border-color: darkred;
+    height: 50px;
 }
 
 a.cancel:hover {
