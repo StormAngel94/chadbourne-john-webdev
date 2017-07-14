@@ -25,6 +25,21 @@ div.floatVertical {
 
 div.main {
     margin-top: 5px;
+    padding-bottom: 90px;
+}
+
+div.sidebar {
+    float: left;
+    width: 250px;
+    height: calc(100% + 100px);
+    border-right: 2px  solid slategray;
+}
+
+div.withsidebar {
+    margin-left: calc(250px + 2%);
+}
+.full {
+    height: 100%;
 }
 
 div.footer {
@@ -39,12 +54,20 @@ div.footer {
     height: 75px;
 }
 
+.center {
+    clear: left;
+}
+
 .left {
     float: left;
 }
 
 .right {
     float: right;
+}
+
+.top {
+    float: top;
 }
 
 h1.leftHeader {
@@ -101,4 +124,18 @@ img.miniscule {
 a.normal {
     color: white;
     text-decoration: none;
+}
+
+textarea.large {
+    height: 300px;
+}
+
+textarea.general {
+    margin-bottom: 10px;
+}
+
+@media screen and ( max-width: 768px ) {
+    div.sidebar {
+        display: none;
+    }
 }
