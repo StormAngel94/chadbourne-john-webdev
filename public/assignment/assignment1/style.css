@@ -138,4 +138,7 @@ textarea.general {
     div.sidebar {
         display: none;
     }
+    div.withsidebar {
+        margin-left: 2%;
+    }
 }
