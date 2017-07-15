@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="full">
 <head>
     <meta charset="UTF-8">
     <title>Assignment 1: Websites</title>
@@ -7,26 +7,27 @@
     <link href="./style.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body class="withHeader withFooter">
+<body class="withHeader withFooter full">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container header">
         <div class="left">
             <h1 class="leftHeader">
-                <a href="./profile.html" class="normal"><   </a>Websites
+                New Website
             </h1>
         </div>
         <div class="right">
             <h1 class="rightHeader">
-                <a href="./website-new.html" class="normal">+</a>
+                <a href="./website-edit.html" class="normal">+</a>
             </h1>
         </div>
     </div>
 </nav>
 
-<div class="main general">
+<div class="full">
+<div class="sidebar">
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="./pages-list.html">Address Book App</a>
+            Address Book App
             <span class="right">
                 <a href="./website-edit.html">
                     <img src="GearBlue.png" class="miniscule">
@@ -34,7 +35,7 @@
             </span>
         </li>
         <li class="list-group-item">
-            <a href="./pages-list.html">Blogger</a>
+            Blogger
             <span class="right">
                 <a href="./website-edit.html">
                     <img src="GearBlue.png" class="miniscule">
@@ -42,7 +43,7 @@
             </span>
         </li>
         <li class="list-group-item">
-            <a href="./pages-list.html">Blogging App</a>
+            Blogging App
             <span class="right">
                 <a href="./website-edit.html">
                     <img src="GearBlue.png" class="miniscule">
@@ -50,7 +51,7 @@
             </span>
         </li>
         <li class="list-group-item">
-            <a href="./pages-list.html">Script Testing App</a>
+            Script Testing App
             <span class="right">
                 <a href="./website-edit.html">
                     <img src="GearBlue.png" class="miniscule">
@@ -58,6 +59,35 @@
             </span>
         </li>
     </ul>
+</div>
+
+<div class="general main withsidebar">
+    <form method="post" action="/data/edit/">
+        <label for="webname">
+            Website Name:
+        </label>
+        <input name="webname"
+               id="webname"
+               type="url"
+               placeholder="Website Name"
+               class="form-control general"/>
+        <label for="description">
+            Website Description:
+        </label>
+        <textarea name="description"
+                id="description"
+                placeholder="Describe your website..."
+                class="form-control general large"></textarea>
+    </form>
+    <a href="./website-list.html"
+       class="btn btn-block btn-primary">
+        Ok
+    </a>
+    <a href="./website-list.html"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+</div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
