@@ -1,10 +1,10 @@
 <div ng-controller="loginController">
     <div class="general">
+        <h1 class="general">Login</h1>
         <div class="alert alert-danger"
              ng-show="errorMessage">
             {{errorMessage}}
         </div>
-        <h1 class="general">Login</h1>
         <form method="post" action="/data/login/">
             <label for="username">
                 Username

@@ -1,4 +1,4 @@
-user.service.client.jsuser.service.client.js/**
+/**
  * Created by ember on 7/22/2017.
  */
 (function () {
@@ -19,14 +19,14 @@ user.service.client.jsuser.service.client.js/**
 
         function createWebsite(userID, website) {
             website.developerId = userID;
-            websites.add(website)
+            websites.concat(website)
         }
 
-        function findWebsitesByUser(user) {
+        function findWebsitesByUser(userId) {
             var sites = [];
             for (var w in websites) {
                 var _site = websites[w];
-                if (_site.developerId === user._id) {
+                if (_site.developerId === userId) {
                     sites.add(_site);
                 }
             }

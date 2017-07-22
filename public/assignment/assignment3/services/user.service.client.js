@@ -15,7 +15,14 @@
         ];
 
         function createUser(user) {
-            users.add(user)
+            var id = 0;
+            for (var i = 0; i < user.username.length; i++) {
+                var char = user.username.charCodeAt(i);
+                id = ((id << 5) - id) + char;
+                id |= 0;
+            }
+            user._id = id.toString();
+            users.push(user);
         }
 
         function findUserById(id) {
