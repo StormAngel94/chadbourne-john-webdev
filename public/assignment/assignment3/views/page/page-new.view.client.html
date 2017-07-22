@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
+        <div class="left">
+            <h1 class="leftHeader">
+                New Page
+            </h1>
+        </div>
+    </div>
+</nav>
+<div class="general main">
+    <form method="post" action="/data/edit/">
+        <label for="pagename">
+            Page Name:
+        </label>
+        <input name="pagename"
+               id="pagename"
+               type="text"
+               placeholder="Website Name"
+               class="form-control general"/>
+        <label for="title">
+            Page Title:
+        </label>
+        <input name="title"
+                id="title"
+                type="text"
+                placeholder="The title of this page"
+                class="form-control general">
+    </form>
+    <a href="#!/user/:uid/website/:wid/page"
+       class="btn btn-block btn-primary">
+        Ok
+    </a>
+    <a href="#!/user/:uid/website/:wid/page"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container footer">
+        <div class="right floatVertical">
+            <a href="#!/user/:uid">
+                <img src="./img/PersonProfile.png" class="tiny">
+            </a>
+        </div>
+    </div>
+</nav>

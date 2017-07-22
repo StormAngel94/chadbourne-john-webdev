@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="webAppMaker">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 3</title>
+
+    <!--Angular Libs-->
+    <script src="https://opensource.keycdn.com/angularjs/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
+
+    <!--Routing-->
+    <script src="./app.js"></script>
+    <script src="./config.js"></script>
+
+    <!--Services-->
+    <script src="./services/user.service.client.js"></script>
+
+    <!--Controllers-->
+    <script src="./views/user/controllers/login.controller.client.js"></script>
+    <script src="./views/user/controllers/profile.controller.client.js"></script>
+
+    <!--Stylesheets-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="withHeader withFooter">
+    <div ng-view></div>
+</body>
+</html>

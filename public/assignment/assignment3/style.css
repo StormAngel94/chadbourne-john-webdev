@@ -1,0 +1,144 @@
+body.withHeader {
+    padding-top: 75px;
+}
+
+body.withFooter {
+    padding-bottom: 75px;
+}
+
+div.general {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+div.header {
+    padding: 0 2% 75px 2%;
+    margin-top: 0;
+    background-color: dodgerblue;
+    width: 100%;
+    height: 75px;
+}
+
+div.floatVertical {
+    margin-top: 12px;
+}
+
+div.main {
+    margin-top: 5px;
+    padding-bottom: 90px;
+}
+
+div.sidebar {
+    float: left;
+    width: 250px;
+    height: calc(100% + 100px);
+    border-right: 2px  solid slategray;
+}
+
+div.withsidebar {
+    margin-left: calc(250px + 2%);
+}
+.full {
+    height: 100%;
+}
+
+div.footer {
+    position:fixed;
+    bottom: 0;
+    padding-top: 0;
+    margin-top: 0;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: dodgerblue;
+    width: 100%;
+    height: 75px;
+}
+
+.center {
+    clear: left;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.top {
+    float: top;
+}
+
+h1.leftHeader {
+    text-align: left;
+    color: white;
+    width: 100%;
+}
+
+h1.rightHeader {
+    float: right;
+    color: white;
+}
+
+input.general {
+    margin-bottom: 10px;
+}
+
+button.general {
+    margin-bottom: 10px;
+}
+
+a.general {
+    margin-bottom: 10px;
+}
+
+a.register {
+    background-color: forestgreen;
+    border-color: darkgreen;
+}
+
+a.register:hover {
+    background-color: darkgreen;
+}
+
+a.cancel {
+    background-color: red;
+    border-color: darkred;
+}
+
+a.cancel:hover {
+    background-color: darkred;
+}
+
+img.tiny {
+    width: 75px;
+    height: 50px;
+}
+
+img.miniscule {
+    width: 30px;
+    height: 15px;
+}
+
+a.normal {
+    color: white;
+    text-decoration: none;
+}
+
+textarea.large {
+    height: 300px;
+}
+
+textarea.general {
+    margin-bottom: 10px;
+}
+
+@media screen and ( max-width: 768px ) {
+    div.sidebar {
+        display: none;
+    }
+    div.withsidebar {
+        margin-left: 2%;
+    }
+}

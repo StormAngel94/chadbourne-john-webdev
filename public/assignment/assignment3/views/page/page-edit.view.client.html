@@ -1,0 +1,99 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
+        <div class="left">
+            <h1 class="leftHeader">
+                Edit Page
+            </h1>
+        </div>
+    </div>
+</nav>
+
+<div class="full">
+<div class="sidebar">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="#!/user/:uid/website/:wid/page/:pid/widget">Blog Post</a>
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/page/:pid/">
+                    <img src="./img/GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+        <li class="list-group-item">
+            <a href="#!/user/:uid/website/:wid/page/:pid/widget">Blogs</a>
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/page/:pid">
+                    <img src="./img/GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+        <li class="list-group-item">
+            <a href="#!/user/:uid/website/:wid/page/:pid/widget">Home</a>
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/page/:pid">
+                    <img src="./img/GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+        <li class="list-group-item">
+            <a href="#!/user/:uid/website/:wid/page/:pid/widget">About</a>
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/page/:pid">
+                    <img src="./img/GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+        <li class="list-group-item">
+            <a href="#!/user/:uid/website/:wid/page/:pid/widget">Contact Us</a>
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/page/:pid">
+                    <img src="./img/GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+    </ul>
+</div>
+
+<div class="general main withsidebar">
+    <form method="post" action="/data/edit/">
+        <label for="pagename">
+            Page Name:
+        </label>
+        <input name="pagename"
+               id="pagename"
+               type="text"
+               placeholder="Website Name"
+               class="form-control general"/>
+        <label for="title">
+            Page Title:
+        </label>
+        <input name="title"
+                id="title"
+                type="text"
+                placeholder="The title of this page"
+                class="form-control general large">
+    </form>
+    <a href="#!/user/:uid/website/:wid/page/"
+       class="btn btn-block btn-primary">
+        Ok
+    </a>
+    <a href="#!/user/:uid/website/:wid/page/"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+    <a href="#!/user/:uid/website/:wid/page/"
+       class="btn btn-block btn-primary cancel">
+        Delete
+    </a>
+</div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container footer">
+        <div class="right floatVertical">
+            <a href="#!/user/:uid">
+                <img src="./img/PersonProfile.png" class="tiny">
+            </a>
+        </div>
+    </div>
+</nav>

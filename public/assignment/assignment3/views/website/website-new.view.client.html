@@ -1,0 +1,86 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
+        <div class="left">
+            <h1 class="leftHeader">
+                New Website
+            </h1>
+        </div>
+    </div>
+</nav>
+
+<div class="full">
+<div class="sidebar">
+    <ul class="list-group">
+        <li class="list-group-item">
+            Address Book App
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/">
+                    <img src="GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+        <li class="list-group-item">
+            Blogger
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/">
+                    <img src="GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+        <li class="list-group-item">
+            Blogging App
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/">
+                    <img src="GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+        <li class="list-group-item">
+            Script Testing App
+            <span class="right">
+                <a href="#!/user/:uid/website/:wid/">
+                    <img src="GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+    </ul>
+</div>
+
+<div class="general main withsidebar">
+    <form method="post" action="/data/edit/">
+        <label for="webname">
+            Website Name:
+        </label>
+        <input name="webname"
+               id="webname"
+               type="url"
+               placeholder="Website Name"
+               class="form-control general"/>
+        <label for="description">
+            Website Description:
+        </label>
+        <textarea name="description"
+                id="description"
+                placeholder="Describe your website..."
+                class="form-control general large"></textarea>
+    </form>
+    <a href="#!/user/:uid/website/"
+       class="btn btn-block btn-primary">
+        Ok
+    </a>
+    <a href="#!/user/:uid/website/"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+</div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container footer">
+        <div class="right floatVertical">
+            <a href="#!/login">
+                <img src="./img/PersonProfile.png" class="tiny">
+            </a>
+        </div>
+    </div>
+</nav>

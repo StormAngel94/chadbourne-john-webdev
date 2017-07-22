@@ -1,0 +1,83 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
+        <div class="left">
+            <h1 class="leftHeader">
+                Edit Image
+            </h1>
+        </div>
+    </div>
+</nav>
+
+<div class="full">
+<div class="general main">
+    <form method="post" action="/data/edit/">
+        <label for="name">
+            Name:
+        </label>
+        <input name="name"
+                id="name"
+                type="text"
+                placeholder="Name"
+                class="form-control general"
+                value="JNPR title">
+        <label for="text">
+            Text:
+        </label>
+        <input name="text"
+                id="text"
+                type="text"
+                placeholder="Describe your website..."
+                class="form-control general"
+                value="Team JNPR">
+        <label for="url">
+            URL:
+        </label>
+        <input name="url"
+               id="url"
+               type="url"
+               placeholder="Image Location"
+               class="form-control general"
+               value="https://cdn.discordapp.com/attachments/266020118385917952/335585804061638687/jnpr_team_wallpaper_by_dantherrien101-d8kn02l.png">
+        <label for="width">
+            Width:
+        </label>
+        <input name="width"
+               id="width"
+               type="number"
+               placeholder="Image Width"
+               class="form-control general"
+               value="50%">
+        <label for="image">
+            Upload Image:
+        </label>
+        <input name="image"
+               id="image"
+               type="file"
+               placeholder="Choose File"
+               class="form-control general"
+               value="50%">
+    </form>
+    <a href="widget-list.view.client.html"
+       class="btn btn-block btn-primary">
+        Upload Image
+    </a>
+    <a href="widget-list.view.client.html"
+       class="btn btn-block btn-primary">
+        Ok
+    </a>
+    <a href="widget-list.view.client.html"
+       class="btn btn-block btn-primary cancel">
+        Delete
+    </a>
+</div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container footer">
+        <div class="right floatVertical">
+            <a href="#!/profile.html">
+                <img src="./img/PersonProfile.png" class="tiny">
+            </a>
+        </div>
+    </div>
+</nav>
