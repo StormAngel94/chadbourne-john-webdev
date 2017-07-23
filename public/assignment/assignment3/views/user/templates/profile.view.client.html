@@ -23,7 +23,7 @@
                     Username:
                 </label>
                 <input name="username"
-                       ng-model="user.username"
+                       ng-model="model.user.username"
                        id="username"
                        type="text"
                        readonly
@@ -32,7 +32,7 @@
                     Email:
                 </label>
                 <input name="email"
-                       mg-model="user.email"
+                       mg-model="model.user.email"
                        id="email"
                        type="email"
                        placeholder="you@somewhere.com"
@@ -41,7 +41,7 @@
                     First Name:
                 </label>
                 <input name="fName"
-                       ng-model="user.firstName"
+                       ng-model="model.user.firstName"
                        id="fName"
                        type="text"
                        placeholder="First Name"
@@ -50,13 +50,13 @@
                     Last Name:
                 </label>
                 <input name="lName"
-                       ng-model="user.lastName"
+                       ng-model="model.user.lastName"
                        id="lName"
                        type="text"
                        placeholder="Last Name"
                        class="form-control general"/>
             </form>
-            <a ng-click="websites()"
+            <a ng-click="model.websites()"
                class="btn btn-block btn-primary">
                 Websites
             </a>

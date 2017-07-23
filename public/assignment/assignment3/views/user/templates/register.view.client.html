@@ -1,8 +1,8 @@
 <div ng-controller="registerController" class="general">
     <h1 class="general">Register</h1>
     <div class="alert alert-danger"
-         ng-show="registerError">
-        {{registerError}}
+         ng-show="model.registerError">
+        {{model.registerError}}
     </div>
     <form method="post" action="/data/login/">
         <label for="username">
@@ -10,7 +10,7 @@
         </label>
         <input name="username"
                id="username"
-               ng-model="user.username"
+               ng-model="model.user.username"
                type="text"
                placeholder="username"
                class="form-control general"/>
@@ -19,7 +19,7 @@
         </label>
         <input name="password"
                id="password"
-               ng-model="user.password"
+               ng-model="model.user.password"
                type="password"
                placeholder="password"
                class="form-control general"/>
@@ -28,13 +28,13 @@
         </label>
         <input name="verify"
                id="verify"
-               ng-model="user.verify"
+               ng-model="model.user.verify"
                type="password"
                placeholder="password"
                class="form-control general"/>
     </form>
 
-    <a ng-click="register(user)"
+    <a ng-click="model.register(model.user)"
        class="btn btn-block btn-primary general">
         Register
     </a>

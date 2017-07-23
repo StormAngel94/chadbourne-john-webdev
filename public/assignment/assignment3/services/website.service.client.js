@@ -19,7 +19,14 @@
 
         function createWebsite(userID, website) {
             website.developerId = userID;
-            websites.concat(website)
+            var id = 0;
+            for (var i = 0; i < website.name.length; i++) {
+                var char = website.name.charCodeAt(i);
+                id = ((id << 5) - id) + char;
+                id |= 0;
+            }
+            website._id = id.toString();
+            websites.push(website)
         }
 
         function findWebsitesByUser(userId) {
@@ -27,7 +34,7 @@
             for (var w in websites) {
                 var _site = websites[w];
                 if (_site.developerId === userId) {
-                    sites.add(_site);
+                    sites.push(_site);
                 }
             }
             return sites;
@@ -36,12 +43,11 @@
         function findWebsiteById(websiteId) {
             for (var w in websites) {
                 var _site = websites[w];
-                if (_site.developerId === websiteId) {
+                if (_site._id === websiteId) {
                     return _site;
                 }
             }
             return null;
-
         }
 
         function updateWebsite(websiteId, website) {
@@ -53,14 +59,14 @@
 
         function deleteWebsite(websiteId) {
             var site = findWebsiteById(websiteId);
-            websites.remove(site);
-
+            var index = websites.indexOf(site);
+            websites.splice(index, 1);
         }
 
         return {
             "createWebsite": createWebsite,
             "findWebsitesByUser": findWebsitesByUser,
-            "findWebsitesById": findWebsiteById,
+            "findWebsiteById": findWebsiteById,
             "updateWebsite": updateWebsite,
             "deleteWebsite": deleteWebsite
         }

@@ -7,7 +7,7 @@
         </div>
         <div class="right">
             <h1 class="rightHeader">
-                <a href="#!/user/:uid/website/new" class="normal">+</a>
+                <a ng-click="model.new()" class="normal">+</a>
             </h1>
         </div>
     </div>
@@ -16,34 +16,10 @@
 <div class="full">
 <div class="sidebar">
     <ul class="list-group">
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page">Address Book App</a>
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a ng-click="model.pages(website)">{{website.name}}</a>
             <span class="right">
-                <a href="#!/user/:uid/website/:wid">
-                    <img src="./img/GearBlue.png" class="miniscule">
-                </a>
-            </span>
-        </li>
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page">Blogger</a>
-            <span class="right">
-                <a href="#!/user/:uid/website/:wid">
-                    <img src="./img/GearBlue.png" class="miniscule">
-                </a>
-            </span>
-        </li>
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page">Blogging App</a>
-            <span class="right">
-                <a href="#!/user/:uid/website/:wid">
-                    <img src="./img/GearBlue.png" class="miniscule">
-                </a>
-            </span>
-        </li>
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page">Script Testing App</a>
-            <span class="right">
-                <a href="#!/user/:uid/website/:wid">
+                    <a ng-click="model.edit(website)">
                     <img src="./img/GearBlue.png" class="miniscule">
                 </a>
             </span>
@@ -58,6 +34,7 @@
         </label>
         <input name="webname"
                id="webname"
+               ng-model="model.website.name"
                type="url"
                placeholder="Website Name"
                class="form-control general"/>
@@ -66,18 +43,19 @@
         </label>
         <textarea name="description"
                 id="description"
+                  ng-model="model.website.description"
                 placeholder="Describe your website..."
                 class="form-control general large"></textarea>
     </form>
-    <a href="#!/user/:uid/website"
+    <a ng-click="model.update(model.website)"
        class="btn btn-block btn-primary">
         Ok
     </a>
-    <a href="#!/user/:uid/website"
+    <a ng-click="model.cancel()"
        class="btn btn-block btn-primary">
         Cancel
     </a>
-    <a href="#!/user/:uid/website"
+    <a ng-click="model.delete()"
        class="btn btn-block btn-primary cancel">
         Delete
     </a>
