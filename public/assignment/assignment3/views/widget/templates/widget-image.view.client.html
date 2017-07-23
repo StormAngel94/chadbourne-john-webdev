@@ -16,6 +16,7 @@
         </label>
         <input name="name"
                 id="name"
+                ng-model="model.widget.name"
                 type="text"
                 placeholder="Name"
                 class="form-control general"
@@ -25,8 +26,9 @@
         </label>
         <input name="text"
                 id="text"
+                ng-model="model.widget.text"
                 type="text"
-                placeholder="Describe your website..."
+                placeholder="Describe your image"
                 class="form-control general"
                 value="Team JNPR">
         <label for="url">
@@ -34,6 +36,7 @@
         </label>
         <input name="url"
                id="url"
+               ng-model="model.widget.url"
                type="url"
                placeholder="Image Location"
                class="form-control general"
@@ -43,6 +46,7 @@
         </label>
         <input name="width"
                id="width"
+               ng-model="model.widget.width"
                type="number"
                placeholder="Image Width"
                class="form-control general"
@@ -57,15 +61,15 @@
                class="form-control general"
                value="50%">
     </form>
-    <a href="widget-list.view.client.html"
-       class="btn btn-block btn-primary">
-        Upload Image
-    </a>
-    <a href="widget-list.view.client.html"
+    <a ng-click="model.updateCurr(model.widget)"
        class="btn btn-block btn-primary">
         Ok
     </a>
-    <a href="widget-list.view.client.html"
+    <a ng-click="model.cancel()"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+    <a ng-click="model.delete()"
        class="btn btn-block btn-primary cancel">
         Delete
     </a>
@@ -75,7 +79,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container footer">
         <div class="right floatVertical">
-            <a href="#!/profile.html">
+            <a ng-click="model.profile()">
                 <img src="./img/PersonProfile.png" class="tiny">
             </a>
         </div>

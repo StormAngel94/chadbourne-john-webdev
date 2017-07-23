@@ -7,7 +7,7 @@
         .factory("widgetService", widgetService);
 
     function widgetService() {
-        var websites = [
+        var widgets = [
             { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
             { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
             { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
@@ -19,27 +19,35 @@
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
 
-        function createWidget(userID, website) {
-            website.developerId = userID;
-            websites.concat(website)
+        function createWidget(pageId, widget) {
+            widget.pageId = pageId;
+            var id = 0;
+            for (var i = 0; i < widget.widgetType.length; i++) {
+                var char = widget.widgetType.charCodeAt(i);
+                id = ((id << 5) - id) + char;
+                id |= 0;
+                id = id * pageId;
+            }
+            widget._id = id.toString();
+            widgets.push(widget)
         }
 
         function findWidgetsByPageId(pageId) {
-            var sites = [];
-            for (var w in websites) {
-                var _site = websites[w];
-                if (_site.developerId === pageId) {
-                    sites.add(_site);
+            var _widgets = [];
+            for (var w in widgets) {
+                var _widget = widgets[w];
+                if (_widget.pageId === pageId) {
+                    _widgets.push(_widget);
                 }
             }
-            return sites;
+            return _widgets;
         }
 
         function findWidgetById(widgetId) {
-            for (var w in websites) {
-                var _site = websites[w];
-                if (_site.developerId === widgetId) {
-                    return _site;
+            for (var w in widgets) {
+                var _widget = widgets[w];
+                if (_widget._id === widgetId) {
+                    return _widget;
                 }
             }
             return null;
@@ -47,15 +55,16 @@
         }
 
         function updateWidget(widgetId, widget) {
-            var site = findWebsiteById(widgetId);
+            var site = findWidgetById(widgetId);
             site.name = widget.name;
             site.description = widget.description;
 
         }
 
         function deleteWidget(widgetId) {
-            var site = findWebsiteById(widgetId);
-            websites.remove(site);
+            var widget = findWidgetById(widgetId);
+            var index = widgets.indexOf(widget);
+            widgets.splice(index, 1);
 
         }
 

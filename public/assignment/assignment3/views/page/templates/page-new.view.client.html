@@ -14,6 +14,7 @@
         </label>
         <input name="pagename"
                id="pagename"
+               ng-model="model.page.name"
                type="text"
                placeholder="Website Name"
                class="form-control general"/>
@@ -22,15 +23,16 @@
         </label>
         <input name="title"
                 id="title"
+                ng-model="model.page.description"
                 type="text"
                 placeholder="The title of this page"
                 class="form-control general">
     </form>
-    <a href="#!/user/:uid/website/:wid/page"
+    <a ng-click="model.create(model.page)"
        class="btn btn-block btn-primary">
         Ok
     </a>
-    <a href="#!/user/:uid/website/:wid/page"
+    <a ng-click="model.cancel()"
        class="btn btn-block btn-primary">
         Cancel
     </a>
@@ -39,7 +41,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container footer">
         <div class="right floatVertical">
-            <a href="#!/user/:uid">
+            <a ng-click="model.profile()">
                 <img src="./img/PersonProfile.png" class="tiny">
             </a>
         </div>

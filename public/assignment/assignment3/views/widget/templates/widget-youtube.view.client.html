@@ -16,24 +16,17 @@
         </label>
         <input name="name"
                 id="name"
+                ng-model="model.widget.name"
                 type="text"
                 placeholder="Name"
                 class="form-control general"
                 value="JNPR title">
-        <label for="text">
-            Text:
-        </label>
-        <input name="text"
-                id="text"
-                type="text"
-                placeholder="Describe your website..."
-                class="form-control general"
-                value="Team JNPR">
         <label for="url">
             URL:
         </label>
         <input name="url"
                id="url"
+               ng-model="model.widget.url"
                type="url"
                placeholder="Image Location"
                class="form-control general"
@@ -43,20 +36,21 @@
         </label>
         <input name="width"
                id="width"
-               type="number"
+               ng-model="model.widget.width"
+               type="text"
                placeholder="Image Width"
                class="form-control general"
                value="50">
     </form>
-    <a href="widget-list.view.client.html"
-       class="btn btn-block btn-primary">
-        Upload Image
-    </a>
-    <a href="widget-list.view.client.html"
+    <a ng-click="model.updateCurr(model.widget)"
        class="btn btn-block btn-primary">
         Ok
     </a>
-    <a href="widget-list.view.client.html"
+    <a ng-click="model.cancel()"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+    <a ng-click="model.delete()"
        class="btn btn-block btn-primary cancel">
         Delete
     </a>
@@ -66,7 +60,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container footer">
         <div class="right floatVertical">
-            <a href="#!/profile.html">
+            <a ng-click="model.profile()">
                 <img src="./img/PersonProfile.png" class="tiny">
             </a>
         </div>

@@ -57,7 +57,7 @@
     function profileController ($routeParams, userService, $location) {
         var vm = this;
         vm.uid = $routeParams["uid"];
-        vm.user = userService.findUserById(vm.uid);
+        vm.user = Array.from(userService.findUserById(vm.uid));
 
         vm.websites = websites;
 
@@ -66,7 +66,6 @@
         }
 
         vm.updateCurr = updateCurr;
-
         function updateCurr(user, userService) {
             userService.updateUser(user);
         }

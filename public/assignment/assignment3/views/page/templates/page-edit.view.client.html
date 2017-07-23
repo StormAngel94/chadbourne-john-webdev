@@ -11,42 +11,10 @@
 <div class="full">
 <div class="sidebar">
     <ul class="list-group">
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget">Blog Post</a>
+        <li ng-repeat="page in model.pages" class="list-group-item">
+            <a ng-click="model.widgets(page)">{{page.name}}</a>
             <span class="right">
-                <a href="#!/user/:uid/website/:wid/page/:pid/">
-                    <img src="./img/GearBlue.png" class="miniscule">
-                </a>
-            </span>
-        </li>
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget">Blogs</a>
-            <span class="right">
-                <a href="#!/user/:uid/website/:wid/page/:pid">
-                    <img src="./img/GearBlue.png" class="miniscule">
-                </a>
-            </span>
-        </li>
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget">Home</a>
-            <span class="right">
-                <a href="#!/user/:uid/website/:wid/page/:pid">
-                    <img src="./img/GearBlue.png" class="miniscule">
-                </a>
-            </span>
-        </li>
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget">About</a>
-            <span class="right">
-                <a href="#!/user/:uid/website/:wid/page/:pid">
-                    <img src="./img/GearBlue.png" class="miniscule">
-                </a>
-            </span>
-        </li>
-        <li class="list-group-item">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget">Contact Us</a>
-            <span class="right">
-                <a href="#!/user/:uid/website/:wid/page/:pid">
+                <a ng-click="model.edit(page)">
                     <img src="./img/GearBlue.png" class="miniscule">
                 </a>
             </span>
@@ -61,6 +29,7 @@
         </label>
         <input name="pagename"
                id="pagename"
+               ng-model="model.page.name"
                type="text"
                placeholder="Website Name"
                class="form-control general"/>
@@ -69,19 +38,20 @@
         </label>
         <input name="title"
                 id="title"
+                ng-model="model.page.title"
                 type="text"
                 placeholder="The title of this page"
                 class="form-control general large">
     </form>
-    <a href="#!/user/:uid/website/:wid/page/"
+    <a ng-click="model.update(model.page)"
        class="btn btn-block btn-primary">
         Ok
     </a>
-    <a href="#!/user/:uid/website/:wid/page/"
+    <a ng-click="model.cancel()"
        class="btn btn-block btn-primary">
         Cancel
     </a>
-    <a href="#!/user/:uid/website/:wid/page/"
+    <a ng-click="model.delete()"
        class="btn btn-block btn-primary cancel">
         Delete
     </a>
@@ -91,7 +61,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container footer">
         <div class="right floatVertical">
-            <a href="#!/user/:uid">
+            <a ng-click="model.profile()">
                 <img src="./img/PersonProfile.png" class="tiny">
             </a>
         </div>

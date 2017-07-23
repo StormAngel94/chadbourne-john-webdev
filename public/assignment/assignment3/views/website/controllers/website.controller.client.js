@@ -33,6 +33,11 @@
         function newWebsite() {
             $location.url("/user/" + vm.uid + "/website/new");
         }
+
+        vm.back = back;
+        function back() {
+            $location.url("/user/" + vm.uid);
+        }
     }
 })();
 
@@ -107,14 +112,15 @@
             $location.url("/user/" + vm.uid + "/website/" + website._id);
         }
 
-        vm.update = update;
-        function update(website) {
+        vm.updateWebsite = updateWebsite;
+        function updateWebsite(website) {
             websiteService.updateWebsite(vm.wid, website);
             $location.url("/user/" + vm.uid + "/website/");
         }
 
         vm.cancel = cancel;
         function cancel() {
+            vm.website = websiteService.findWebsiteById(vm.wid);
             $location.url("/user/" + vm.uid + "/website/");
         }
 

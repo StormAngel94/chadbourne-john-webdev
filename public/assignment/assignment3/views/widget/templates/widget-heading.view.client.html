@@ -16,6 +16,7 @@
         </label>
         <input name="name"
                 id="name"
+                ng-model="model.widget.name"
                 type="text"
                 placeholder="Name"
                 class="form-control general"
@@ -25,8 +26,9 @@
         </label>
         <input name="text"
                 id="text"
+                ng-model="model.widget.text"
                 type="text"
-                placeholder="Describe your website..."
+                placeholder="The text of your Header"
                 class="form-control general"
                 value="Team JNPR">
         <label for="size">
@@ -34,16 +36,21 @@
         </label>
         <input name="size"
                 id="size"
+                ng-model="model.widget.size"
                 type="number"
-                placeholder="Heading Type"
+                placeholder="Heading Size"
                 class="form-control general"
                 value="3">
     </form>
-    <a href="widget-list.view.client.html"
+    <a ng-click="model.updateCurr(model.widget)"
        class="btn btn-block btn-primary">
         Ok
     </a>
-    <a href="widget-list.view.client.html"
+    <a ng-click="model.cancel()"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+    <a ng-click="model.delete()"
        class="btn btn-block btn-primary cancel">
         Delete
     </a>
@@ -53,7 +60,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container footer">
         <div class="right floatVertical">
-            <a href="#!/login">
+            <a ng-click="model.profile()">
                 <img src="./img/PersonProfile.png" class="tiny">
             </a>
         </div>
