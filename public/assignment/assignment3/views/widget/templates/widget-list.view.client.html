@@ -24,19 +24,26 @@
             </span>
             <div ng-switch="widget.widgetType">
                 <div ng-switch-when="HEADING">
-                    <h3>{{widget.text}}</h3>
+                    <div ng-switch="widget.size">
+                        <h1 ng-switch-when="1">{{widget.text}}</h1>
+                        <h2 ng-switch-when="2">{{widget.text}}</h2>
+                        <h3 ng-switch-when="3">{{widget.text}}</h3>
+                        <h4 ng-switch-when="4">{{widget.text}}</h4>
+                        <h5 ng-switch-when="5">{{widget.text}}</h5>
+                    </div>
                 </div>
                 <div ng-switch-when="IMAGE">
-                    <img src="{{widget.url}}">
+                    <img ng-src="{{widget.url}}">
                 </div>
                 <div ng-switch-when="YOUTUBE">
                     <iframe width="{{widget.width}}"
                             height="315"
-                            src="{{$sce.trustAsResourceUrl(widget.url)}}"
+                            ng-src="{{model.trustUrl(widget.url)}}"
                             frameborder="0"
                             allowfullscreen>
                     </iframe>
                 </div>
+                <div ng-switch-when="HTML" ng-bind-html="model.trustHTML(widget.text)"></div>
             </div>
         </li>
     </ul>

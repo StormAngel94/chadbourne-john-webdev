@@ -6,7 +6,7 @@
         .module("webAppMaker")
         .controller("widgetListController", widgetListController);
 
-    function widgetListController($routeParams, $location, widgetService) {
+    function widgetListController($routeParams, $location, $sce, widgetService) {
         var vm = this;
         vm.uid = $routeParams["uid"];
         vm.wid = $routeParams["wid"];
@@ -34,6 +34,19 @@
         vm.new = newWidget;
         function newWidget() {
             $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/new");
+        }
+
+        vm.trustHTML = trustHTML;
+        function trustHTML(html) {
+            return $sce.trustAsHtml(html);
+        }
+
+        vm.trustUrl = trustUrl;
+        function trustUrl(url) {
+            var youtubeUrl = "https://www.youtube.com/embed/";
+            var urlParts = url.split("/");
+            youtubeUrl += urlParts[urlParts.length-1];
+            return $sce.trustAsResourceUrl(youtubeUrl);
         }
     }
 })();
