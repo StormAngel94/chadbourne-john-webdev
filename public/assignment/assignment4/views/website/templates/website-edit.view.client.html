@@ -1,0 +1,73 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
+        <div class="left">
+            <h1 class="leftHeader">
+                Edit Website
+            </h1>
+        </div>
+        <div class="right">
+            <h1 class="rightHeader">
+                <a ng-click="model.new()" class="normal">+</a>
+            </h1>
+        </div>
+    </div>
+</nav>
+
+<div class="full">
+<div class="sidebar">
+    <ul class="list-group">
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a ng-click="model.pages(website)">{{website.name}}</a>
+            <span class="right">
+                    <a ng-click="model.edit(website)">
+                    <img src="./img/GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+    </ul>
+</div>
+
+<div class="general main withsidebar">
+    <form method="post" action="/data/edit/">
+        <label for="webname">
+            Website Name:
+        </label>
+        <input name="webname"
+               id="webname"
+               ng-model="model.website.name"
+               type="url"
+               placeholder="Website Name"
+               class="form-control general"/>
+        <label for="description">
+            Website Description:
+        </label>
+        <textarea name="description"
+                id="description"
+                  ng-model="model.website.description"
+                placeholder="Describe your website..."
+                class="form-control general large"></textarea>
+    </form>
+    <a ng-click="model.updateWebsite(model.website)"
+       class="btn btn-block btn-primary">
+        Ok
+    </a>
+    <a ng-click="model.cancel()"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+    <a ng-click="model.delete()"
+       class="btn btn-block btn-primary cancel">
+        Delete
+    </a>
+</div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container footer">
+        <div class="right floatVertical">
+            <a href="#!/user/:uid">
+                <img src="./img/PersonProfile.png" class="tiny">
+            </a>
+        </div>
+    </div>
+</nav>

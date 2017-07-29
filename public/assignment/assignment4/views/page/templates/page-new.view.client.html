@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
+        <div class="left">
+            <h1 class="leftHeader">
+                New Page
+            </h1>
+        </div>
+    </div>
+</nav>
+<div class="general main">
+    <form method="post" action="/data/edit/">
+        <label for="pagename">
+            Page Name:
+        </label>
+        <input name="pagename"
+               id="pagename"
+               ng-model="model.page.name"
+               type="text"
+               placeholder="Website Name"
+               class="form-control general"/>
+        <label for="description">
+            Page Description:
+        </label>
+        <input name="description"
+                id="description"
+                ng-model="model.page.description"
+                type="text"
+                placeholder="Describe this page..."
+                class="form-control general">
+    </form>
+    <a ng-click="model.create(model.page)"
+       class="btn btn-block btn-primary">
+        Ok
+    </a>
+    <a ng-click="model.cancel()"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container footer">
+        <div class="right floatVertical">
+            <a ng-click="model.profile()">
+                <img src="./img/PersonProfile.png" class="tiny">
+            </a>
+        </div>
+    </div>
+</nav>

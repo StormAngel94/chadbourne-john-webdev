@@ -1,12 +1,14 @@
-var app = require('./express');
-var express = app.express;
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+var express = require('./express');
+var app = express.express;
 
-app.use(express.static(__dirname + '/public'));
+var bodyParser = require('body-parser');
+express.use(bodyParser.json());
+express.use(bodyParser.urlencoded({ extended: true }));
+
+express.use(app.static(__dirname + '/public'));
 
 require("./test/app");
+require("./assignment/app")(app);
 
 port = process.env.PORT || 3000;
-app.listen(port);
+express.listen(port);
