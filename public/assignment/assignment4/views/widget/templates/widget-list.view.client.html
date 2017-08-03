@@ -14,7 +14,7 @@
 </nav>
 
 <div class="main general">
-    <ul class="list-group">
+    <ul id="sortable" class="list-group">
         <li ng-repeat="widget in model.widgets" class="list-group-item">
             <a ng-click="model.edit(widget)">{{widget.widgetType}}</a>
             <span class="right">
