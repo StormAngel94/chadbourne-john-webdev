@@ -116,6 +116,7 @@
         vm.cancel = cancel;
         vm.delete = deleteWidget;
         vm.profile = profile;
+        vm.search = search;
 
         vm.uid = $routeParams["uid"];
         vm.wid = $routeParams["wid"];
@@ -154,5 +155,50 @@
         function profile() {
             $location.url("/user/" + vm.uid);
         }
+
+        function search() {
+            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + vm.wgid + "/search/");
+        }
     }
+})();
+
+(function () {
+    angular
+        .module("webAppMaker")
+        .controller("FlickrImageSearchController", FlickrImageSearchController);
+
+    function FlickrImageSearchController($routeParams, $location, widgetService, flickrService) {
+        var vm = this;
+
+        vm.searchPhoto = searchPhoto;
+        vm.selectPhoto = selectPhoto;
+
+        function searchPhoto(searchTerm) {
+            flickrService
+                .searchPhoto(searchTerm)
+                .then(function (response) {
+                    var data = response.data.replace("jsonFlickrApi(", "");
+                    data = data.substring(0, data.length - 1);
+                    data = JSON.parse(data);
+                    vm.photos = data.photos;
+                });
+        }
+
+        function selectPhoto(photo) {
+            var _url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
+            _url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
+            var uid = $routeParams["uid"];
+            var wid = $routeParams["wid"];
+            var pid = $routeParams["pid"];
+            var wgid = $routeParams["wgid"];
+            var widget = widgetService.findWidgetById(wgid);
+            widget.url = _url;
+            widgetService
+                .updateWidget(wgid, widget)
+                .then(
+                    $location.url("/user/"+ uid + "/website/" + wid + "/page/" + pid + "/widget/" + wgid)
+                );
+        }
+    }
+
 })();

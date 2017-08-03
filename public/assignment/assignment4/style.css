@@ -1,4 +1,4 @@
-body.withHeader {
+.withHeader {
     padding-top: 75px;
 }
 
@@ -21,6 +21,11 @@ div.header {
 
 div.floatVertical {
     margin-top: 12px;
+}
+
+div.topbot5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 div.main {

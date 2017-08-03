@@ -15,11 +15,15 @@ var widgets = [
 
 module.exports = function () {
     var app = require("../../express");
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
     app.post("/api/page/:pid/widget", createWidget);
+    app.post("/api/upload", upload.single('myFile'), uploadFile);
     app.get("/api/page/:pid/widget", findWidgetsByPageId);
     app.get("/api/widget/:wgid", findWidgetById);
     app.put("/api/widget/:wgid", updateWidget);
+    app.put("/page/:pageId/widget", moveWidget);
     app.delete("/api/widget/:wgid", deleteWidget);
 };
 
@@ -83,9 +87,43 @@ function updateWidget(req, res) {
     res.send("0");
 }
 
+function moveWidget(req, res) {
+    var from = req.query.initial;
+    var to = req.query.final;
+    var widget = widgets[from];
+    console.log(widget);
+    widgets.splice(from, 1);
+    widgets.splice(to, 0, widget);
+    console.log(widgets[to]);
+    res.send("0")
+}
+
 function deleteWidget(req, res) {
     var widget = searchWidgetById(req.params.wgid);
     var index = widgets.indexOf(widget);
     widgets.splice(index, 1);
     res.send(widget);
+}
+
+function uploadFile(req, res) {
+    var myFile = req.file;
+
+    var widgetId = req.body.widgetId;
+    var uid = req.body.userId;
+    var wid = req.body.websiteId;
+    var pid = req.body.pageId;
+
+    var origname = myFile.name;
+    var filename      = myFile.filename;
+    var width         = myFile.width;
+    var path          = myFile.path;
+    var destination   = myFile.destination;
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+
+    var widget = searchWidgetById(widgetId);
+    widget.url = '/uploads/' + filename;
+    widget.width = width;
+    var callbackUrl   = "/assignment/assignment4/index.html#!   /user/" + uid + "/website/" + wid + "/page/" + pid + "/widget";
+    res.redirect(callbackUrl);
 }

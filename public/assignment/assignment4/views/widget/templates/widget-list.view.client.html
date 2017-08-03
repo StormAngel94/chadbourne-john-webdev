@@ -14,39 +14,7 @@
 </nav>
 
 <div class="main general">
-    <ul id="sortable" class="list-group">
-        <li ng-repeat="widget in model.widgets" class="list-group-item">
-            <a ng-click="model.edit(widget)">{{widget.widgetType}}</a>
-            <span class="right">
-                <a ng-click="model.edit(widget)">
-                    <img src="./img/GearBlue.png" class="miniscule">
-                </a>
-            </span>
-            <div ng-switch="widget.widgetType">
-                <div ng-switch-when="HEADING">
-                    <div ng-switch="widget.size">
-                        <h1 ng-switch-when="1">{{widget.text}}</h1>
-                        <h2 ng-switch-when="2">{{widget.text}}</h2>
-                        <h3 ng-switch-when="3">{{widget.text}}</h3>
-                        <h4 ng-switch-when="4">{{widget.text}}</h4>
-                        <h5 ng-switch-when="5">{{widget.text}}</h5>
-                    </div>
-                </div>
-                <div ng-switch-when="IMAGE">
-                    <img ng-src="{{widget.url}}">
-                </div>
-                <div ng-switch-when="YOUTUBE">
-                    <iframe width="{{widget.width}}"
-                            height="315"
-                            ng-src="{{model.trustUrl(widget.url)}}"
-                            frameborder="0"
-                            allowfullscreen>
-                    </iframe>
-                </div>
-                <div ng-switch-when="HTML" ng-bind-html="model.trustHTML(widget.text)"></div>
-            </div>
-        </li>
-    </ul>
+    <sort></sort>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
