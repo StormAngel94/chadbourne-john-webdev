@@ -1,0 +1,34 @@
+.spaced {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.left {
+    float: left;
+    clear: left;
+}
+
+.right {
+    float: right;
+}
+
+.inline {
+    display: inline;
+    align-self: flex-end;
+}
+
+div.general {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+
+input.withButton {
+    align-self: flex-start;
+    width: calc(100% - 50px)
+}
+
+span.left {
+    float: left;
+    width: calc(100% - 27px)
+}

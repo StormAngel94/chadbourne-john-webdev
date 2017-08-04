@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project Home Page</title>
-</head>
-<body>
-    <h1>Project Home Page</h1>
-</body>
+<html lang="en" ng-app="tagMovies">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tag Movies</title>
+
+        <!-- Libs -->
+        <script src="https://opensource.keycdn.com/angularjs/1.6.5/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
+
+        <!-- Scripts -->
+        <script src="./app.js"></script>
+        <script src="./config.js"></script>
+
+        <!-- Controllers -->
+        <script src="./controllers/search.controller.client.js"></script>
+        <script src="./controllers/details.controller.client.js"></script>
+
+        <!-- Services -->
+        <script src="./services/movie.service.client.js"></script>
+
+        <!-- Style -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="./style.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+        <div ng-view class="full"></div>
+    </body>
 </html>

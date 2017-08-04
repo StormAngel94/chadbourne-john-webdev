@@ -1,0 +1,57 @@
+<div class="general">
+    <span class="left">
+        <label for="Search">Search For:</label>
+        <input name="search"
+               id="Search"
+               ng-model="model.search.searchText"
+               type="text"
+               placeholder="Search..."
+               class="form-control withButton inline"/>
+        <span class="input-group-btn inline">
+            <a ng-click="model.goSearch(model.search)" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+
+        <label for="Movie">Search Movies:</label>
+        <input name="searchCritera"
+               checked="checked"
+               value="movie"
+               id="Movie"
+               ng-model="model.search.searchType"
+               type="radio"
+               placeholder="username"
+               class="radio-inline radios"/>
+
+        <label for="Tag">Search Tags:</label>
+        <input name="searchCritera"
+               value="tag"
+               id="Tag"
+               ng-model="model.search.searchType"
+               type="radio"
+               placeholder="username"
+               class="radio-inline radios"/>
+    </span>
+
+    <div ng-show="model.movies">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Language</th>
+                    <th>Poster</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="movie in model.movies">
+                    <td><a ng-click="model.goToMovie(movie)">{{movie.title}}</a></td>
+                    <td>{{movie.original_language}}</td>
+                    <td>
+                        <img    src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}"
+                                width="50px">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
