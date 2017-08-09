@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
+        <div class="left">
+            <h1 class="leftHeader">
+                Edit Page
+            </h1>
+        </div>
+    </div>
+</nav>
+
+<div class="full">
+<div class="sidebar">
+    <ul class="list-group">
+        <li ng-repeat="page in model.pages" class="list-group-item">
+            <a ng-click="model.widgets(page)">{{page.name}}</a>
+            <span class="right">
+                <a ng-click="model.edit(page)">
+                    <img src="./img/GearBlue.png" class="miniscule">
+                </a>
+            </span>
+        </li>
+    </ul>
+</div>
+
+<div class="general main withsidebar">
+    <form method="post" action="/data/edit/">
+        <label for="pagename">
+            Page Name:
+        </label>
+        <input name="pagename"
+               id="pagename"
+               ng-model="model.page.name"
+               type="text"
+               placeholder="Website Name"
+               class="form-control general"/>
+        <label for="description">
+            Page Description:
+        </label>
+        <input name="description"
+                id="description"
+                ng-model="model.page.description"
+                type="text"
+                placeholder="The title of this page"
+                class="form-control general large">
+    </form>
+    <a ng-click="model.update(model.page)"
+       class="btn btn-block btn-primary">
+        Ok
+    </a>
+    <a ng-click="model.cancel()"
+       class="btn btn-block btn-primary">
+        Cancel
+    </a>
+    <a ng-click="model.delete()"
+       class="btn btn-block btn-primary cancel">
+        Delete
+    </a>
+</div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container footer">
+        <div class="right floatVertical">
+            <a ng-click="model.profile()">
+                <img src="./img/PersonProfile.png" class="tiny">
+            </a>
+        </div>
+    </div>
+</nav>

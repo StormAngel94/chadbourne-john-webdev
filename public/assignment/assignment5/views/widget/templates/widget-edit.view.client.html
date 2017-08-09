@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container header">
+        <div class="left">
+            <h1 class="leftHeader">
+                Edit Heading
+            </h1>
+        </div>
+    </div>
+</nav>
+
+<div class="full">
+<div ng-switch="model.widget.widgetType" class="general main">
+    <div ng-switch-when="HEADING">
+        <div ng-include="'./views/widget/templates/widget-heading.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <div ng-include="'./views/widget/templates/widget-image.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="YOUTUBE">
+        <div ng-include="'./views/widget/templates/widget-youtube.view.client.html'"></div>
+    </div>
+</div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container footer">
+        <div class="right floatVertical">
+            <a ng-click="model.profile()">
+                <img src="./img/PersonProfile.png" class="tiny">
+            </a>
+        </div>
+    </div>
+</nav>
