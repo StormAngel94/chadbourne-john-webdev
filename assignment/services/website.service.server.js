@@ -21,7 +21,7 @@ function createWebsite(req, res) {
 
 function findWebsitesByUser(req, res) {
     var userId = req.params.uid;
-        res.send(websiteModel.findAllWebsitesForUser(userId));
+        res.json(websiteModel.findAllWebsitesForUser(userId));
 }
 
 function findWebsiteById(req, res) {

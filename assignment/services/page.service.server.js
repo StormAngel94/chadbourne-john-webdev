@@ -1,6 +1,8 @@
 /**
  * Created by ember on 7/22/2017.
  */
+var pageModel = require("../model/page/page.model.server");
+
 module.exports = function () {
     var app = require("../../express");
 
@@ -13,64 +15,37 @@ module.exports = function () {
 
 function createPage(req, res) {
     var page = req.body;
-    var id = 0;
-    for (var i = 0; i < page.name.length; i++) {
-        var char = page.name.charCodeAt(i);
-        id = ((id << 5) - id) + char;
-        id |= 0;
-    }
-    page._id = id.toString();
-    pages.push(page);
-    res.send(page);
+    var uid = req.params.uid;
+    res.json(pageModel.createPage(uid, page));
 }
 
 function findPagesByWebsiteId(req, res) {
     var websiteId = req.params.wid;
-    var _pages = [];
-    for (var p in pages) {
-        var _page = pages[p];
-        if (_page.websiteId === websiteId) {
-            _pages.push(_page);
-        }
-    }
-    res.send(_pages);
+    res.json(pageModel.findAllPagesForWebsite(websiteId));
 }
 
 function findPageById(req, res) {
-    var pageId = req.params.pid;
-    for (var p in pages) {
-        var _page = pages[p];
-        if (_page._id === pageId) {
-            res.send(_page);
-            return;
-        }
-    }
-    res.send("0");
-}
-
-function searchPageById(pageId) {
-    for (var p in pages) {
-        var _page = pages[p];
-        if (_page._id === pageId) {
-            return _page;
-        }
-    }
-    return null;
+    var id = req.params.wid;
+    pageModel.findPageById(id)
+        .then(function (response) {
+            res.json(response);
+        });
 }
 
 function updatePage(req, res) {
-    var pageId = req.params.pid;
+    var wid = req.params.uid;
     var page = req.body;
-    var _page = searchPageById(pageId);
-    _page.name = page.name;
-    _page.description = page.description;
-    res.send("0");
+    pageModel.updatePage(wid, page)
+        .then(function (response) {
+            res.json(response);
+        });
+
 }
 
 function deletePage(req, res) {
-    var pageId = req.params.pid;
-    var _page = searchPageById(pageId);
-    var index = pages.indexOf(_page);
-    pages.splice(index, 1);
-    res.send("0");
+    var wid = req.params.wid;
+    pageModel.deletePage(wid)
+        .then(function (response) {
+            res.json(response);
+        });
 }

@@ -1,6 +1,8 @@
 /**
  * Created by ember on 7/22/2017.
  */
+var widgetModel = require('../model/website/website.model.server');
+
 module.exports = function () {
     var app = require("../../express");
     var multer = require('multer');
@@ -17,39 +19,39 @@ module.exports = function () {
 
 function createWidget(req, res) {
     var widget = req.body;
-    var id = 0;
-    for (var i = 0; i < widget.widgetType.length; i++) {
-        var char = widget.widgetType.charCodeAt(i);
-        id = ((id << 5) - id) + char;
-        id |= 0;
-        id = id * widget.pageId;
-    }
-    widget._id = id.toString();
-    widgets.push(widget);
-    res.send(widget)
+    var uid = req.params.uid;
+    res.json(widgetModel.createWidget(uid, widget));
 }
 
 function findWidgetsByPageId(req, res) {
-    var pageId = req.params.pid;
-    var _widgets = [];
-    for (var w in widgets) {
-        var _widget = widgets[w];
-        if (_widget.pageId === pageId) {
-            _widgets.push(_widget);
-        }
-    }
-    res.send(_widgets);
+    var websiteId = req.params.wid;
+    res.json(widgetModel.findAllWidgetsForPage(websiteId));
 }
 
 function findWidgetById(req, res) {
-    var widgetId = req.params.wgid;
-    for (var w in widgets) {
-        var _widget = widgets[w];
-        if (_widget._id === widgetId) {
-            res.send(_widget);
-            return;
-        }
-    }
+    var id = req.params.wid;
+    widgetModel.findWidgetById(id)
+        .then(function (response) {
+            res.json(response);
+        });
+}
+
+function updateWidget(req, res) {
+    var wid = req.params.uid;
+    var widget = req.body;
+    widgetModel.updateWidget(wid, widget)
+        .then(function (response) {
+            res.json(response);
+        });
+
+}
+
+function deleteWidget(req, res) {
+    var wid = req.params.wid;
+    widgetModel.deleteWidget(wid)
+        .then(function (response) {
+            res.json(response);
+        });
 }
 
 function searchWidgetById(widgetId) {
@@ -60,19 +62,6 @@ function searchWidgetById(widgetId) {
         }
     }
     return null;
-
-}
-
-function updateWidget(req, res) {
-    var _widget = searchWidgetById(req.params.wgid);
-    var widget = req.body;
-    _widget.name = widget.name;
-    _widget.text = widget.text;
-    _widget.size = widget.size;
-    _widget.url = widget.url;
-    _widget.width = widget.width;
-
-    res.send("0");
 }
 
 function moveWidget(req, res) {
@@ -86,20 +75,13 @@ function moveWidget(req, res) {
     res.send("0")
 }
 
-function deleteWidget(req, res) {
-    var widget = searchWidgetById(req.params.wgid);
-    var index = widgets.indexOf(widget);
-    widgets.splice(index, 1);
-    res.send(widget);
-}
-
 function uploadFile(req, res) {
     var myFile = req.file;
 
     var widgetId = req.body.widgetId;
     var uid = req.body.userId;
     var wid = req.body.websiteId;
-    var pid = req.body.pageId;
+    var pid = req.body.widgetId;
 
     var origname = myFile.name;
     var filename      = myFile.filename;
