@@ -15,8 +15,13 @@ pageModel.deletePage = deletePage;
 module.exports = pageModel;
 
 function createPage(wid, page) {
-    page._website = wid;
-    return pageModel.create(page);
+    page._wid = wid;
+    var _page = new pageModel(page);
+    _page.save(function (err, page) {
+        if (err) return console.error(err);
+        return page;
+    });
+    return _page;
 }
 
 function findAllPagesForWebsite(wid) {

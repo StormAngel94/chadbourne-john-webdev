@@ -17,7 +17,12 @@ module.exports = widgetModel;
 
 function createWidget(pid, widget){
     widget._page = pid;
-    return widgetModel.create(widget);
+    var _widget = new widgetModel(widget);
+    _widget.save(function (err, widget) {
+        if (err) return console.error(err);
+        return widget;
+    });
+    return _widget;
 }
 
 function findAllWidgetsForPage(pid) {

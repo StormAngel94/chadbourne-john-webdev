@@ -50,14 +50,6 @@ function createUser(req, res) {
     res.json(userModel.createUser(user));
 }
 
-function findUserById(id) {
-    userModel.findUserById(id)
-        .then(function (response) {
-            return response;
-        });
-    return null;
-}
-
 function updateUser(req, res) {
     var uid = req.params.uid;
     var user = req.body;

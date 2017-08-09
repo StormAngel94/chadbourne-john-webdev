@@ -1,12 +1,6 @@
 /**
  * Created by ember on 7/22/2017.
  */
-var pages = [
-    {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
-    {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
-    {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"}
-];
-
 module.exports = function () {
     var app = require("../../express");
 

@@ -8,7 +8,6 @@
 
     function websiteService($http) {
         function createWebsite(userId, website) {
-            website.developerId = userId;
             var url = "/api/user/" + userId + "/website";
             return $http.post(url, website)
         }

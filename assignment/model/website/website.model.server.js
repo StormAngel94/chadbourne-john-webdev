@@ -14,7 +14,12 @@ websiteModel.deleteWebsite = deleteWebsite;
 
 function createWebsiteForUser(uid, website) {
     website._user = uid;
-    return websiteModel.create(website)
+    var _website = new websiteModel(website);
+    _website.save(function (err, website) {
+        if (err) return console.error(err);
+        return website;
+    });
+    return _website;
 }
 
 function findAllWebsitesForUser(uid) {
