@@ -3,5 +3,5 @@
  */
 
 (function() {
-    angular.module('webAppMaker', ["ngRoute", "wbdv-sortable"]);
+    angular.module('webAppMaker', ["ngRoute", "wbdv-sortable", "textAngular"]);
 })();

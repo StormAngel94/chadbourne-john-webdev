@@ -1,7 +1,7 @@
 /**
  * Created by ember on 7/22/2017.
  */
-var widgetModel = require('../model/website/website.model.server');
+var widgetModel = require('../model/widget/widget.model.server');
 
 module.exports = function () {
     var app = require("../../express");
@@ -19,27 +19,30 @@ module.exports = function () {
 
 function createWidget(req, res) {
     var widget = req.body;
-    var uid = req.params.uid;
-    res.json(widgetModel.createWidget(uid, widget));
+    var pid = req.params.pid;
+    res.json(widgetModel.createWidget(pid, widget));
 }
 
 function findWidgetsByPageId(req, res) {
-    var websiteId = req.params.wid;
-    res.json(widgetModel.findAllWidgetsForPage(websiteId));
+    var pageId = req.params.pid;
+    widgetModel.findAllWidgetsForPage(pageId)
+        .then(function(websites) {
+            res.json(websites)
+        });
 }
 
 function findWidgetById(req, res) {
-    var id = req.params.wid;
-    widgetModel.findWidgetById(id)
+    var wgid = req.params.wgid;
+    widgetModel.findWidgetById(wgid)
         .then(function (response) {
             res.json(response);
         });
 }
 
 function updateWidget(req, res) {
-    var wid = req.params.uid;
+    var wgid = req.params.wgid;
     var widget = req.body;
-    widgetModel.updateWidget(wid, widget)
+    widgetModel.updateWidget(wgid, widget)
         .then(function (response) {
             res.json(response);
         });
@@ -52,16 +55,6 @@ function deleteWidget(req, res) {
         .then(function (response) {
             res.json(response);
         });
-}
-
-function searchWidgetById(widgetId) {
-    for (var w in widgets) {
-        var _widget = widgets[w];
-        if (_widget._id === widgetId) {
-            return _widget;
-        }
-    }
-    return null;
 }
 
 function moveWidget(req, res) {
@@ -91,7 +84,7 @@ function uploadFile(req, res) {
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
 
-    var widget = searchWidgetById(widgetId);
+    var widget = widgetModel.findById(widgetId);
     widget.url = '/uploads/' + filename;
     widget.width = width;
     var callbackUrl   = "/assignment/assignment4/index.html#!   /user/" + uid + "/website/" + wid + "/page/" + pid + "/widget";

@@ -28,15 +28,15 @@ function findPagesByWebsiteId(req, res) {
 }
 
 function findPageById(req, res) {
-    var id = req.params.wid;
-    pageModel.findPageById(id)
+    var pid = req.params.pid;
+    pageModel.findPageById(pid)
         .then(function (response) {
             res.json(response);
         });
 }
 
 function updatePage(req, res) {
-    var wid = req.params.uid;
+    var wid = req.params.pid;
     var page = req.body;
     pageModel.updatePage(wid, page)
         .then(function (response) {

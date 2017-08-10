@@ -92,7 +92,7 @@
 
         function newWidget(widgetType) {
             var _widget = {};
-            _widget.widgetType = widgetType;
+            _widget.type = widgetType;
             var promise = widgetService.createWidget(vm.pid, _widget);
             promise
                 .then(function (response) {

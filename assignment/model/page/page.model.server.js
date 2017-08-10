@@ -31,8 +31,8 @@ function findAllPagesForWebsite(wid) {
         .exec();
 }
 
-function findPageById(wid) {
-    return pageModel.findOne({_website: wid})
+function findPageById(pid) {
+    return pageModel.findOne({_id: pid})
 }
 
 function updatePage(pid, page) {

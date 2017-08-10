@@ -26,7 +26,10 @@ function createWidget(pid, widget){
 }
 
 function findAllWidgetsForPage(pid) {
-    return widgetModel.find({_id: pid});
+    return widgetModel
+        .find({_page: pid})
+        .populate('_page', 'name')
+        .exec();
 }
 
 function findWidgetById(wgid) {
@@ -34,6 +37,8 @@ function findWidgetById(wgid) {
 }
 
 function updateWidget(wgid, widget) {
+    if (!widget.rows) {widget.rows = 0;}
+    if (!widget.size) {widget.size = 0;}
     return widgetModel.update({_id: wgid}, {$set: {
         name:           widget.name,
         text:           widget.text,

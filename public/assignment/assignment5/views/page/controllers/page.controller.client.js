@@ -111,7 +111,6 @@
                     vm.page = response.data;
                 })
         }
-
         init();
 
         vm.update = update;
