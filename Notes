@@ -1,0 +1,8 @@
+Data Access Object - Design pattern encapsulating database access to a single class
+Relational Databases - Store relations by using a foreign key to store the primary key of the related object.
+
+[{type: mongoose.Schema.Types.ObjectID, ref:"}]
+
+For Project watch for massive commits
+
+Add addWebsite to User-

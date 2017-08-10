@@ -3,7 +3,6 @@
  */
 var mongoose = require("mongoose");
 var websiteSchema = require("./website.schema.server");
-
 var websiteModel = mongoose.model("websiteModel", websiteSchema);
 
 websiteModel.createWebsiteForUser = createWebsiteForUser;
@@ -23,7 +22,10 @@ function createWebsiteForUser(uid, website) {
 }
 
 function findAllWebsitesForUser(uid) {
-    return websiteModel.find({_user: uid});
+    return websiteModel
+        .find({_user: uid})
+        .populate('_user', 'username')
+        .exec();
 }
 
 function findWebsiteById(wid) {

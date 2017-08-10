@@ -21,7 +21,10 @@ function createWebsite(req, res) {
 
 function findWebsitesByUser(req, res) {
     var userId = req.params.uid;
-        res.json(websiteModel.findAllWebsitesForUser(userId));
+    websiteModel.findAllWebsitesForUser(userId)
+        .then(function(websites) {
+            res.json(websites)
+        });
 }
 
 function findWebsiteById(req, res) {
@@ -33,7 +36,7 @@ function findWebsiteById(req, res) {
 }
 
 function updateWebsite(req, res) {
-    var wid = req.params.uid;
+    var wid = req.params.wid;
     var website = req.body;
     websiteModel.updateWebsite(wid, website)
         .then(function (response) {
