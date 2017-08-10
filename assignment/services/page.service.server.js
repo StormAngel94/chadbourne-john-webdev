@@ -20,8 +20,11 @@ function createPage(req, res) {
 }
 
 function findPagesByWebsiteId(req, res) {
-    var websiteId = req.params.wid;
-    res.json(pageModel.findAllPagesForWebsite(websiteId));
+    var wid = req.params.wid;
+    pageModel.findAllPagesForWebsite(wid)
+        .then(function(websites) {
+            res.json(websites)
+        });
 }
 
 function findPageById(req, res) {
