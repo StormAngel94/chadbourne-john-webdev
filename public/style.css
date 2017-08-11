@@ -1,19 +1,26 @@
 body {
-    background-color: #66023C;
-    color: darkgoldenrod;
+    background-color: #99035A;
+    color: gold;
 }
 
 .navbar {
-    background-color: #33011E;
-    border-color: #260117;
+    background-color: #66023C;
+    border-color: #33011E;
 }
 
 .navbar-default .navbar-brand {
-    color: gold;
+    color: goldenrod;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: darkgoldenrod;
 }
 
 .navbar-default .navbar-nav>li>a{
-    color: gold;
+    color: goldenrod;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: darkgoldenrod;
 }
 
 main {
