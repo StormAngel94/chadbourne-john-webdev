@@ -1,0 +1,56 @@
+body {
+    background-color: #66023C;
+    color: darkgoldenrod;
+}
+
+.navbar {
+    background-color: #33011E;
+    border-color: #260117;
+}
+
+.navbar-default .navbar-brand {
+    color: gold;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: gold;
+}
+
+main {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.left {
+    display: inline-block;
+    float: left;
+    margin-right: 1%;
+    width: 43%;
+}
+
+.right {
+    display: inline-block;
+    float: right;
+    margin-left: 1%;
+    width: 43%;
+}
+
+.bottom {
+    padding: 15px;
+    clear: both;
+    width: 100%;
+}
+
+.table-header {
+    font-weight: bold;
+}
+
+.table {
+    table-layout: fixed;
+    width: 100%;
+    background-color: #33011E;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    border-top: 1px solid #66023c;
+}

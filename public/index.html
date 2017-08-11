@@ -2,36 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+    <title>Welcome!</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Landing Page">
+    <meta name="author" content="John Chadbourne">
 </head>
-<body>
-    <h1>Web Dev Course Home Page</h1>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Chadbourne's Homepage</a>
+            </div>
 
-    <p>
-        This is your website's home page. Your home page should have a picture of yourself, link to your assignments,
-        link to your final project implementation on Heroku, link to your GitHub,
-        link to a 5 minute video demoing your project. Your home page should look
-        spectacular. You should feel proud to share your homepage with your potential employer.
-        I should feel proud to share your homepage with my colleagues.
-    </p>
-
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="/lectures">Lectures</a>
-        </li>
-        <li>
-            <a href="https://github.com/StormAngel94/chadbourne-john-webdev">Site GitHub</a>
-        </li>
-    </ul>
-</body>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="project/index.html">Project</a>
+                    </li>
+                    <li>
+                        <a href="assignment/index.html">Assignment</a>
+                    </li>
+                    <li>
+                        <a href="test/index.html">Test MongoDB</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/StormAngel94/chadbourne-john-webdev">Site GitHub</a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <main>
+        <div class="left">
+            <img src="./img/me.jpg" width="100%">
+        </div>
+        <div class="right">
+            <h1>Welcome!</h1>
+            <p>
+                My name is John Chadbourne, and I am a rising Senior Undergraduate Physics major going for minors in Math and Computer Science at Northeastern University. I have been taking programming classes since I was 13, though I have never worked on any major projects. I am currently working for Numeric Investors in Boston MA as part of their application support team.
+            </p>
+        </div>
+        <div class="bottom">
+            <h2>Current Projects:</h2>
+            <table class="table">
+                <thead class="table-header">
+                    <tr>
+                        <td width="10%">Project</td>
+                        <td width="80%">Update</td>
+                        <td width="10%">Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Webdev</td>
+                        <td>Working on my final project.  Should have the majority done by the eveneing of 8/13.</td>
+                        <td>8/11/2017</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </html>
