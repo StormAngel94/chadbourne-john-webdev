@@ -10,7 +10,10 @@
             .when("/", {
                 templateUrl: "./views/generalPages/templates/home-page.view.client.html",
                 controller: "homeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
             })
             .when("/login", {
                 templateUrl: "./views/userPages/templates/login-page.view.client.html",
@@ -37,5 +40,19 @@
                 controller: "tagController",
                 controllerAs: "model"
             })
+    }
+
+    function checkLogin(userService, $q) {
+        var deferred = $q.defer();
+        userService.checkLogin()
+            .then(function (response) {
+                var user = response.data;
+                if(user === '0') {
+                    deferred.resolve()
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
     }
 })();

@@ -17,6 +17,49 @@
     align-self: flex-end;
 }
 
+#wrap, #wrap2 {
+    float: left;
+    position: relative;
+    left: 50%;
+    clear: left;
+}
+
+#content, #content2 {
+    clear: left;
+    float: left;
+    position: relative;
+    left: -50%;
+}
+
+.navbar-default .navbar-nav>li>label {
+    color: #777;
+    font-weight: normal;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.navbar-default .navbar-nav>li>input {
+    color: #777;
+    font-weight: normal;
+    margin-top: 0px;
+    margin-right: 2px;
+}
+
+#search {
+    color: #777;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.navbar .navbar-default {
+    background-color: #999999;
+}
+
+body {
+    background-color: #666666;
+    color: silver;
+}
+
 div.general {
     margin-left: 2%;
     margin-right: 2%;

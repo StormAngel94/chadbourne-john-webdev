@@ -23,21 +23,21 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><label for="Movie">Search Movies:</label>
                         <input name="searchCritera"
-                                       checked="checked"
-                                       value="movie"
-                                       id="Movie"
-                                       ng-model="model.search.searchType"
-                                       type="radio"
-                                       placeholder="username"
-                                       class="radio-inline radios"/></li>
+                               checked="checked"
+                               value="movie"
+                               id="Movie"
+                               ng-model="model.search.searchType"
+                               type="radio"
+                               placeholder="username"
+                               class="radio-inline radios"/></li>
                     <li><label for="Tag">Search Tags:</label>
                         <input name="searchCritera"
-                                       value="tag"
-                                       id="Tag"
-                                       ng-model="model.search.searchType"
-                                       type="radio"
-                                       placeholder="username"
-                                       class="radio-inline radios"/></li>
+                               value="tag"
+                               id="Tag"
+                               ng-model="model.search.searchType"
+                               type="radio"
+                               placeholder="username"
+                               class="radio-inline radios"/></li>
                     <li><input name="search"
                                id="search"
                                ng-model="model.search.searchText"
@@ -56,16 +56,26 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="main full">
-    <div id="wrap">
-        <div id="content">
-            <h1 class="center" ng-show="!model.user">Welcome to TagMovies!</h1>
-            <h1 class="center" ng-show="model.user">Welcome back {{model.user.username}}!</h1>
-        </div>
-    </div>
-    <div id="wrap2">
-        <div id="content2">
-            <h3 class="center">Use the search bar in the upper right to begin.</h3>
-        </div>
+<div>
+    <div ng-show="model.movies">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Language</th>
+                    <th>Poster</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="movie in model.movies">
+                    <td><a ng-click="model.goToMovie(movie)">{{movie.title}}</a></td>
+                    <td>{{movie.original_language}}</td>
+                    <td>
+                        <img    src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}"
+                                width="50px">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
