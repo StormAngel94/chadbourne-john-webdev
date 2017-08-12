@@ -1,0 +1,33 @@
+<div>
+    <div class="general">
+        <h1 class="general">Login</h1>
+        <div class="alert alert-danger"
+             ng-show="model.errorMessage">
+            {{model.errorMessage}}
+        </div>
+        <form method="post" action="/data/login/">
+            <label for="username">
+                Username
+            </label>
+            <input name="username"
+                   id="username"
+                   ng-model="model.user.username"
+                   type="text"
+                   placeholder="username"
+                   class="form-control general"/>
+            <label for="password">
+                Password
+            </label>
+            <input name="password"
+                   id="password"
+                   ng-model="model.user.password"
+                   type="password"
+                   placeholder="password"
+                   class="form-control general"/>
+        </form>
+        <a  class="btn btn-block btn-primary general"
+            ng-click="model.login(model.user)">
+            Login
+        </a>
+    </div>
+</div>

@@ -4,9 +4,25 @@
         <meta charset="UTF-8">
         <title>Tag Movies</title>
 
+        <!-- Style -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="./style.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <main>
+            <div ng-view class="full"></div>
+        </main>
+    </body>
+
+    <!-- Javascript (Loaded at the end to improve load performance) -->
         <!-- Libs -->
         <script src="https://opensource.keycdn.com/angularjs/1.6.5/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <!-- Scripts -->
         <script src="./app.js"></script>
@@ -18,14 +34,5 @@
 
         <!-- Services -->
         <script src="./services/movie.service.client.js"></script>
-
-        <!-- Style -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="./style.css" rel="stylesheet" type="text/css">
-
-    </head>
-
-    <body>
-        <div ng-view class="full"></div>
-    </body>
+    <!-- /Javascript -->
 </html>
