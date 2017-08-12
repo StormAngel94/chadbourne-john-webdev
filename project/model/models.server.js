@@ -14,3 +14,5 @@ if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
 mongoose.connect(connectionString);
 
 require("./user/user.model.server");
+require("./movie/movie.model.server");
+require("./tag/tag.model.server");

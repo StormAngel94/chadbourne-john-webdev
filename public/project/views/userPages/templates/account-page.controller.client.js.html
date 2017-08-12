@@ -1,0 +1,56 @@
+<div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
+
+<div class="main full">
+    <div class="left">
+        <h1 class="inline">{{model.user.username}}'s Profile</h1>
+        <div class="alert alert-success inline"
+             ng-show="model.updateMessage">
+            {{model.updateMessage}}
+        </div>
+    </div>
+    <div class="left">
+        <form method="post" action="/api/update" enctype="multipart/form-data">
+            <label for="username">Username</label>
+            <input name="Username"
+                   id="username"
+                   class="form-control"
+                   type="text"
+                   ng-model="model.user.username"
+                   readonly="readonly">
+            <label for="password">Password</label>
+            <input name="Password"
+                   id="password"
+                   class="form-control"
+                   type="password"
+                   ng-model="model.user.password">
+            <label for="firstName">First Name</label>
+            <input name="First Name"
+                   id="firstName"
+                   class="form-control"
+                   type="text"
+                   ng-model="model.user.firstName">
+            <label for="lastName">Last Name</label>
+            <input name="Last Name"
+                   id="lastName"
+                   class="form-control"
+                   type="text"
+                   ng-model="model.user.lastName">
+            <label for="email">E-mail</label>
+            <input name="E-mail"
+                   id="email"
+                   class="form-control"
+                   type="email"
+                   ng-model="model.user.email">
+        </form>
+        <a ng-click="model.updateCurr(model.user)" class="btn btn-block btn-primary">Update Profile</a>
+    </div>
+
+    <div class="right">
+        <ul>
+            <li ng-repeat="movie in model.user.favedMovies">
+                <a class="left" ng-click="model.goToMovie(movie)">{{movie.title}}</a>
+                <img src="movie.poster"
+            </li>
+        </ul>
+    </div>
+</div>

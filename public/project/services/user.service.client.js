@@ -25,7 +25,7 @@
         }
 
         function updateUser(userId, user) {
-            return $http.put("/api/user/" + userId, user);
+            return $http.post("/api/updateUser/", {_id: userId, user: user});
         }
 
         function deleteUser(id) {

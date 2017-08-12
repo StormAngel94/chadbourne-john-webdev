@@ -4,18 +4,24 @@
 (function () {
     angular
         .module("tagMovies")
-        .controller("homeController", homeController);
+        .controller("profileController", profileController);
 
-    function homeController($location, user) {
+    function profileController($location, userService, user) {
         var vm = this;
         vm.user = user;
 
+        vm.updateCurr = updateCurr;
         vm.goToLogin = goToLogin;
         vm.goToRegister = goToRegister;
         vm.goToAccount = goToAccount;
         vm.goToAdmin = goToAdmin;
         vm.goSearch = goSearch;
         vm.logout = logout;
+
+        function updateCurr(user) {
+            userService.updateUser(user._id, user);
+            vm.updateMessage = "Update Successful!"
+        }
 
         function goToLogin() {
             $location.url("/login")
@@ -40,5 +46,6 @@
         function goSearch(criteria) {
             $location.url("/search/" + criteria.searchType + "/" + criteria.searchText)
         }
+
     }
 })();

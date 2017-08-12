@@ -13,8 +13,8 @@ module.exports = function () {
 
     app.get("/api/user", nameTaken);
     app.post("/api/user", createUser);
+    app.post("/api/updateUser", updateUser);
     app.post("/api/login", passport.authenticate('local'), login);
-    app.put("/api/user/:uid", updateUser);
     app.delete("/api/user/:uid", deleteUser);
     app.get("/api/checkLogin", checkLogin);
 };
@@ -51,8 +51,8 @@ function localStrategy(username, password, done) {
 }
 
 function updateUser(req, res) {
-    var uid = req.params.uid;
-    var user = req.body;
+    var uid = req.body._id;
+    var user = req.body.user;
     userModel.updateUser(uid, user)
         .then(function (response) {
             res.json(response);
