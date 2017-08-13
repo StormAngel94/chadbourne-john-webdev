@@ -12,6 +12,7 @@ userModel.findUserById = findUserById;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
+userModel.searchUsers = searchUsers;
 
 module.exports = userModel;
 
@@ -50,7 +51,7 @@ function updateUser(uid, user) {
         password:       user.password,
         firstName:      user.firstName,
         lastName:       user.lastName,
-        email:          user.email,
+        email:          user.email
     }})
 }
 
@@ -58,4 +59,9 @@ function deleteUser(id) {
     return userModel.remove({_id: id}, function (err) {
         if(err) handleError(err);
     });
+}
+
+function searchUsers(user) {
+    var searchTerm = '.*' + user + '.*';
+    return userModel.find({username: {$regex : searchTerm}})
 }

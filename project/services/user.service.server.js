@@ -11,7 +11,9 @@ passport.deserializeUser(deserializeUser);
 module.exports = function () {
     var app = require("../../express");
 
+    app.get("/api/search/user/:user", searchUsers);
     app.get("/api/user", nameTaken);
+    app.get("/api/user/:uid", findUserById);
     app.post("/api/user", createUser);
     app.post("/api/updateUser", updateUser);
     app.post("/api/login", passport.authenticate('local'), login);
@@ -86,4 +88,19 @@ function deserializeUser(user, done) {
 
 function checkLogin(req, res) {
     res.send(req.isAuthenticated() ? req.user : '0');
+}
+
+function searchUsers(req, res) {
+    userModel.searchUsers(req.params.user)
+        .then(function (response) {
+            res.json(response);
+        })
+}
+
+function findUserById(req, res) {
+    var uid = req.params.uid;
+    userModel.findUserById(uid)
+        .then(function (response) {
+            res.send(response);
+        })
 }

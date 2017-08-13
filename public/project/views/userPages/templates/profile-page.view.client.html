@@ -1,0 +1,52 @@
+<div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
+
+<div class="main full">
+    <div class="left">
+        <h1 class="inline">{{model.other.username}}'s Profile</h1>
+        <div class="alert alert-success inline"
+             ng-show="model.updateMessage">
+            {{model.updateMessage}}
+        </div>
+    </div>
+    <div class="left">
+        <form method="post" action="/api/update" enctype="multipart/form-data">
+            <label for="username">Username</label>
+            <input name="Username"
+                   id="username"
+                   class="form-control"
+                   type="text"
+                   ng-model="model.other.username"
+                   readonly="readonly">
+            <label for="firstName">First Name</label>
+            <input name="First Name"
+                   id="firstName"
+                   class="form-control"
+                   type="text"
+                   ng-model="model.other.firstName"
+                   readonly="readonly">
+            <label for="lastName">Last Name</label>
+            <input name="Last Name"
+                   id="lastName"
+                   class="form-control"
+                   type="text"
+                   ng-model="model.other.lastName"
+                   readonly="readonly">
+            <label for="email">E-mail</label>
+            <input name="E-mail"
+                   id="email"
+                   class="form-control"
+                   type="email"
+                   ng-model="model.other.email"
+                   readonly="readonly">
+        </form>
+    </div>
+
+    <div class="right">
+        <ul>
+            <li ng-repeat="movie in model.other.favedMovies">
+                <a class="left" ng-click="model.goToMovie(movie)">{{movie.title}}</a>
+                <img src="movie.poster"
+            </li>
+        </ul>
+    </div>
+</div>

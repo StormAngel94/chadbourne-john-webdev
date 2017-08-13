@@ -4,11 +4,19 @@
 (function () {
     angular
         .module("tagMovies")
-        .controller("accountController", accountController);
+        .controller("profileController", profileController);
 
-    function accountController($location, userService, user) {
+    function profileController($location, $routeParams, userService, user) {
         var vm = this;
         vm.user = user;
+        vm.otherId = $routeParams["uid"];
+        function init() {
+            userService.findUserById(vm.otherId)
+                .then(function (response) {
+                    vm.other = response.data;
+                })
+        }
+        init();
 
         vm.updateCurr = updateCurr;
         vm.goToLogin = goToLogin;

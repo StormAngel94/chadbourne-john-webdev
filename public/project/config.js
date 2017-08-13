@@ -16,8 +16,8 @@
                 }
             })
             .when("/profile", {
-                templateUrl: "./views/userPages/templates/account-page.controller.client.js.html",
-                controller: "profileController",
+                templateUrl: "./views/userPages/templates/account-page.view.client.js.html",
+                controller: "accountController",
                 controllerAs: "model",
                 resolve: {
                     user: checkLoginSecure
@@ -47,7 +47,7 @@
                     user: checkLogin
                 }
             })
-            .when("/search/:mid", {
+            .when("/search/go/movie/:mid", {
                 templateUrl: "./views/moviePages/templates/movie-page.html",
                 controller: "detailsController",
                 controllerAs: "model",
@@ -55,9 +55,17 @@
                     user: checkLogin
                 }
             })
-            .when("/search/:tid", {
+            .when("/search/go/tag/:tid", {
                 templateUrl: "./views/moviePages/templates/tag-page.view.client.html",
                 controller: "tagController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
+            .when("/search/go/user/:uid", {
+                templateUrl: "./views/userPages/templates/profile-page.view.client.html",
+                controller: "profileController",
                 controllerAs: "model",
                 resolve: {
                     user: checkLogin

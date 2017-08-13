@@ -36,6 +36,10 @@
             return $http.get("/api/checkLogin")
         }
 
+        function searchUsers(searchTerm) {
+            return $http.get("/api/search/user/" + searchTerm);
+        }
+
         return {
             "createUser": createUser,
             "findUserById": findUserById,
@@ -43,7 +47,8 @@
             "login": login,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
-            "checkLogin": checkLogin
+            "checkLogin": checkLogin,
+            "searchUsers": searchUsers
         }
     }
 })();

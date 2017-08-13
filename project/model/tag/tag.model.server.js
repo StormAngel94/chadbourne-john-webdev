@@ -10,6 +10,7 @@ tagModel.removeFav = removeFav;
 tagModel.addMovie = addMovie;
 tagModel.removeMovie = removeMovie;
 tagModel.updateTag = updateTag;
+tagModel.searchTags = searchTags;
 module.exports = tagModel;
 
 
@@ -42,4 +43,9 @@ function updateTag(tid, tag) {
         name: tag.name,
         description: tag.description
     }})
+}
+
+function searchTags(tag) {
+    var searchTerm = '.*' + tag + '.*';
+    return tagModel.find({username: {$regex : searchTerm}})
 }
