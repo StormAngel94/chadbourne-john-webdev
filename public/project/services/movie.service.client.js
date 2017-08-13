@@ -35,7 +35,9 @@
             "searchMovies": searchMovies,
             "getMovie": getMovie,
             "findMovie": findMovie,
-            "createMovie": createMovie
+            "createMovie": createMovie,
+            "addFav": addFav,
+            "removeFav": removeFav
         }
     }
 })();

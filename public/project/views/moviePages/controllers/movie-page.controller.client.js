@@ -65,13 +65,22 @@
 
         function favorite() {
             var mid = vm.movie.id;
-            if(vm.user.movies && vm.user.movies.contains(mid)) {
+            if(vm.user.movies && contains(vm.user.movies, mid)) {
                 movieService.removeFav(mid);
                 userService.removeMovie(mid);
             } else {
                 movieService.addFav(mid);
                 userService.addMovie(mid);
             }
+        }
+
+        function contains(a, obj) {
+            for (var i = 0; i < a.length; i++) {
+                if (a[i] === obj) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 })();

@@ -42,8 +42,6 @@ function removeTag(mid, tid) {
 function findMovie(mid) {
     return movieModel
         .findOne({tmdbId: mid})
-        .populate('tags', 'name')
-        .exec();
 }
 
 function createMovie(mid) {

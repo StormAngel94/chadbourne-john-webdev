@@ -13,15 +13,15 @@ module.exports = function () {
 function findMovie(req, res) {
     var mid = req.params.mid;
     movieModel.findMovie(mid)
-        .then(function (response) {
-            res.json(response);
-        })
+        .then(function(movie) {
+            res.json(movie)
+        });
 }
 
 function createMovie(req, res) {
     var mid = req.params.mid;
     movieModel.createMovie(mid)
-        .then(function (response) {
-            res.json(response);
+        .then(function (movie) {
+            res.json(movie);
         })
 }
