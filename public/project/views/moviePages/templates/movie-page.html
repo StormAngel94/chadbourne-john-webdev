@@ -1,1 +1,36 @@
 <div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
+<div class="general">
+    <div class="left-narrow" ng-show="model.movie.poster_path">
+        <img src="http://image.tmdb.org/t/p/w185{{model.movie.poster_path}}"
+             class="reactive-pic">
+
+        <a ng-click="model.goToTag(tag)"
+           ng-repeat="tag in model.tags"
+           class="btn btn-block btn-primary general"></a>
+    </div>
+
+    <div>
+        <h1>{{model.movie.title}}</h1>
+        <h3 ng-show="model.movie.tagline">"{{model.movie.tagline}}"</h3>
+        <a ng-show="model.user"
+           ng-click="model.favorite()"
+           class="btn btn-block btn-primary inline">
+            <span class="glyphicon glyphicon-plus"></span></a>
+        <h3 class="inline">Favorites:</h3>
+        <h2 class="inline">{{model.movie.favs}}</h2>
+        <h3>Revenue: ${{model.movie.revenue}}</h3>
+        <h3>Release Date: {{model.movie.release_date}}</h3>
+        <p>Overview: {{model.movie.overview}}</p>
+        <form>
+            <label for="tag" class="inline">Add Tag:</label>
+            <input id="tag"
+                   name="Tag Name"
+                   type="text"
+                   class="form-control right-wide-less inline"
+                   placeholder="New Tag Name"
+                   ng-model="model.newTag">
+            <a ng-click="model.addTag(model.newTag)" class="btn btn-block btn-primary inline">
+                <span class="glyphicon glyphicon-plus"></span></a>
+        </form>
+    </div>
+</div>

@@ -13,6 +13,8 @@ userModel.findUserByCredentials = findUserByCredentials;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.searchUsers = searchUsers;
+userModel.addMovie = addMovie;
+userModel.removeMovie = removeMovie;
 
 module.exports = userModel;
 
@@ -64,4 +66,16 @@ function deleteUser(id) {
 function searchUsers(user) {
     var searchTerm = '.*' + user + '.*';
     return userModel.find({username: {$regex : searchTerm}})
+}
+
+function addMovie(uid, mid) {
+    return userModel.update({_id: uid}, {$push: {
+        movies: mid
+    }})
+}
+
+function removeMovie(uid, mid) {
+    return userModel.update({_id: uid}, {$pull: {
+        movies: mid
+    }})
 }

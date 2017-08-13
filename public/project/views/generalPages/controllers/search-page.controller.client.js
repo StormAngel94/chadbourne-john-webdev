@@ -6,9 +6,10 @@
         .module("tagMovies")
         .controller("searchController", searchController);
     
-    function searchController($location, $routeParams, movieService, tagService, userService) {
+    function searchController($location, $routeParams, user, movieService, tagService, userService) {
         var vm = this;
         vm.search = {};
+        vm.user = user;
         vm.search.searchType = $routeParams['type'];
         vm.search.searchText = $routeParams["search"];
 

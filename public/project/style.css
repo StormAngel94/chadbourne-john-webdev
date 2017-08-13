@@ -106,3 +106,27 @@ span.left {
 .table-hover tbody tr:hover td>a, .table-hover tbody tr:hover th>a {
     color: #666666;
 }
+
+.left-narrow{
+    display: inline-block;
+    float: left;
+    margin-right: 1%;
+    width: 23%;
+}
+
+.reactive-pic {
+    width: 100%;
+}
+
+.right-wide {
+    display: inline-block;
+    float: right;
+    margin-left: 1%;
+    width: 75%;
+}
+
+.right-wide-less {
+    display: inline-block;
+    margin-left: 1%;
+    width: 65%;
+}

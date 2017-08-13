@@ -6,16 +6,28 @@
         .module("tagMovies")
         .controller("detailsController", detailsController);
     
-    function detailsController($routeParams, movieService) {
+    function detailsController($routeParams, user, movieService) {
         var vm = this;
+        vm.user = user;
 
         function init() {
             vm.mid = $routeParams["mid"];
-            var promise = movieService.getMovie(vm.mid);
-            promise
+            movieService.getMovie(vm.mid)
                 .then(function (response) {
-                        vm.movie = response.data;
-                        console.log(vm.movie)
+                    vm.movie = response.data;
+                    movieService.findMovie(vm.mid)
+                        .then(function (response) {
+                            if(response.data === null) {
+                                movieService.createMovie(vm.mid)
+                                    .then(function (response) {
+                                        vm.movie = response.data;
+                                        vm.tags = vm.movie.tags;
+                                    })
+                            } else {
+                                vm.tags = response.data.tags;
+                                vm.movie.favs = response.data.favs
+                            }
+                        })
                     }
                 )
         }
@@ -27,6 +39,8 @@
         vm.goToAdmin = goToAdmin;
         vm.goSearch = goSearch;
         vm.logout = logout;
+        vm.goToTag = goToTag;
+        vm.favorite = favorite;
 
         function goToLogin() {
             $location.url("/login")
@@ -44,12 +58,27 @@
             $location.url("/ADMIN/base")
         }
 
+        function goToTag() {
+            $location.url("/search/go/tag/:tid")
+        }
+
         function logout() {
             $location.url("/login")
         }
 
         function goSearch(criteria) {
             $location.url("/search/" + criteria.searchType + "/" + criteria.searchText)
+        }
+
+        function favorite() {
+            var mid = vm.movie.id;
+            if(vm.user.movies && vm.user.movies.contains(mid)) {
+                movieService.removeFav(mid);
+                userService.removeMovie(mid);
+            } else {
+                movieService.addFav(mid);
+                userService.addMovie(mid);
+            }
         }
     }
 })();

@@ -40,6 +40,14 @@
             return $http.get("/api/search/user/" + searchTerm);
         }
 
+        function addMovie(uid, mid) {
+            return $http.post("/api/user/" + uid + "/addMovie/" + mid);
+        }
+
+        function removeMovie(uid, mid) {
+            return $http.post("/api/user/" + uid + "/removeMovie/" + mid);
+        }
+
         return {
             "createUser": createUser,
             "findUserById": findUserById,
@@ -48,7 +56,9 @@
             "updateUser": updateUser,
             "deleteUser": deleteUser,
             "checkLogin": checkLogin,
-            "searchUsers": searchUsers
+            "searchUsers": searchUsers,
+            "addMovie": addMovie,
+            "removeMovie": removeMovie
         }
     }
 })();

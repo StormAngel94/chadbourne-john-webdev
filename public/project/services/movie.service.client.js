@@ -21,9 +21,19 @@
             return $http.get(url);
         }
 
+        function findMovie(id) {
+            return $http.get("/api/movie/:mid");
+        }
+
+        function createMovie(mid) {
+            return $http.post("/api/movie/:mid", mid);
+        }
+
         return {
             "searchMovies": searchMovies,
-            "getMovie": getMovie
+            "getMovie": getMovie,
+            "findMovie": findMovie,
+            "createMovie": createMovie
         }
     }
 })();

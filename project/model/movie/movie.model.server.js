@@ -9,6 +9,9 @@ movieModel.addFav = addFav;
 movieModel.removeFav = removeFav;
 movieModel.addTag = addTag;
 movieModel.removeTag = removeTag;
+movieModel.findMovie = findMovie;
+movieModel.createMovie = createMovie;
+
 module.exports = movieModel;
 
 
@@ -34,4 +37,18 @@ function removeTag(mid, tid) {
     return movieModel.update({_id: mid}, {$pull: {
         tags: tid
     }})
+}
+
+function findMovie(mid) {
+    return movieModel.findById({_id: mid});
+}
+
+function createMovie(mid) {
+    var _movie = new movieModel();
+    _movie._id = mid;
+    _movie.save(function (err, user) {
+        if (err) return console.error(err);
+        return user
+    });
+    return  _movie;
 }

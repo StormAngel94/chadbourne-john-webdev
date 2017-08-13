@@ -15,6 +15,8 @@ module.exports = function () {
     app.get("/api/user", nameTaken);
     app.get("/api/user/:uid", findUserById);
     app.post("/api/user", createUser);
+    app.post("/api/user/:uid/addMovie/:mid", addMovie);
+    app.post("/api/user/:uid/removeMovie/:mid", removeMovie);
     app.post("/api/updateUser", updateUser);
     app.post("/api/login", passport.authenticate('local'), login);
     app.delete("/api/user/:uid", deleteUser);
@@ -64,6 +66,24 @@ function updateUser(req, res) {
 function deleteUser(req, res) {
     var uid = req.params.uid;
     userModel.deleteUser(uid)
+        .then(function (response) {
+            res.json(response);
+        });
+}
+
+function addMovie(req, res) {
+    var uid = req.params.uid;
+    var mid = req.params.mid;
+    userModel.addMovie(uid, mid)
+        .then(function (response) {
+            res.json(response);
+        });
+}
+
+function removeMovie(req, res) {
+    var uid = req.params.uid;
+    var mid = req.params.mid;
+    userModel.removeMovie(uid, mid)
         .then(function (response) {
             res.json(response);
         });
