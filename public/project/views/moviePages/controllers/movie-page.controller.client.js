@@ -15,21 +15,14 @@
             movieService.getMovie(vm.mid)
                 .then(function (response) {
                     vm.movie = response.data;
-                    movieService.findMovie(vm.mid)
-                        .then(function (response) {
-                            if(response.data === null) {
-                                movieService.createMovie(vm.mid)
-                                    .then(function (response) {
-                                        vm.movie = response.data;
-                                        vm.tags = vm.movie.tags;
-                                    })
-                            } else {
-                                vm.tags = response.data.tags;
-                                vm.movie.favs = response.data.favs
-                            }
-                        })
+                });
+            movieService.findMovie(vm.mid)
+                .then(function (response) {
+                    vm.tagMovie = response.data;
+                    if(vm.tagMovie === null) {
+                        movieService.createMovie(vm.mid);
                     }
-                )
+                })
         }
         init();
 

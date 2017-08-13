@@ -19,14 +19,16 @@
             var urlBase = "https://api.themoviedb.org/3/movie/MOVIE_ID?api_key=API_KEY&language=en-US";
             var url = urlBase.replace("MOVIE_ID", id).replace("API_KEY", key);
             return $http.get(url);
+
         }
 
-        function findMovie(id) {
-            return $http.get("/api/movie/:mid");
+        function findMovie(mid) {
+            return $http.get("/api/movie/" + mid);
         }
 
         function createMovie(mid) {
-            return $http.post("/api/movie/:mid", mid);
+            var url = "/api/movie/create/" + mid;
+            return $http.post(url);
         }
 
         return {

@@ -3,7 +3,8 @@
  */
 var mongoose = require("mongoose");
 var movieSchema = mongoose.Schema({
-    tags: [{type: mongoose.Schema.Types.ObjectId, ref:"tagSchema"}],
-    favs: Number
+    tags:       [{type: mongoose.Schema.Types.ObjectId, ref:"tagSchema"}],
+    favs:       Number,
+    tmdbId:     String
 });
 module.exports = movieSchema;

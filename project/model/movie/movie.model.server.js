@@ -40,15 +40,18 @@ function removeTag(mid, tid) {
 }
 
 function findMovie(mid) {
-    return movieModel.findById({_id: mid});
+    return movieModel
+        .findOne({tmdbId: mid})
+        .populate('tags', 'name')
+        .exec();
 }
 
 function createMovie(mid) {
     var _movie = new movieModel();
-    _movie._id = mid;
-    _movie.save(function (err, user) {
+    _movie.tmdbId = mid;
+    _movie.save(function (err, movie) {
         if (err) return console.error(err);
-        return user
+        return movie
     });
     return  _movie;
 }
