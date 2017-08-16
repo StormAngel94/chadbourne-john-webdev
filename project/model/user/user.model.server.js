@@ -3,6 +3,7 @@
  */
 var mongoose = require("mongoose");
 var userSchema = require("./user.schema.server");
+var movieModel = require("../movie/movie.model.server");
 
 var userModel = mongoose.model("userModel", userSchema);
 

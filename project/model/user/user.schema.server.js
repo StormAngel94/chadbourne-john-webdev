@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
     firstName:      String,
     lastName:       String,
     email:          String,
-    movies:         {type: [{type: mongoose.Schema.Types.ObjectId, ref:"movieSchema"}], default: []},
+    movies:         {type: [Number], default: []},
     tags:           {type: [{type: mongoose.Schema.Types.ObjectId, ref:"tagSchema"}], default: []},
     dateCreated:    {type: Date, default: Date.now}
 });

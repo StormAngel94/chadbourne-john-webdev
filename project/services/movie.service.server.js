@@ -8,6 +8,8 @@ module.exports = function () {
 
     app.get("/api/movie/:mid", findMovie);
     app.post("/api/movie/create/:mid", createMovie);
+    app.put("/api/movie/addFav/:mid", addFav);
+    app.put("/api/movie/removeFav/:mid", removeFav);
 };
 
 function findMovie(req, res) {
@@ -21,6 +23,22 @@ function findMovie(req, res) {
 function createMovie(req, res) {
     var mid = req.params.mid;
     movieModel.createMovie(mid)
+        .then(function (movie) {
+            res.json(movie);
+        })
+}
+
+function addFav(req, res) {
+    var mid = req.params.mid;
+    movieModel.addFav(mid)
+        .then(function (movie) {
+            res.json(movie);
+        })
+}
+
+function removeFav(req, res) {
+    var mid = req.params.mid;
+    movieModel.removeFav(mid)
         .then(function (movie) {
             res.json(movie);
         })

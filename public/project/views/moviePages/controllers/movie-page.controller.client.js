@@ -6,7 +6,7 @@
         .module("tagMovies")
         .controller("detailsController", detailsController);
     
-    function detailsController($routeParams, user, movieService) {
+    function detailsController($routeParams, $location, user, movieService, userService) {
         var vm = this;
         vm.user = user;
 
@@ -65,12 +65,15 @@
 
         function favorite() {
             var mid = vm.movie.id;
+            var uid = vm.user._id;
             if(vm.user.movies && contains(vm.user.movies, mid)) {
                 movieService.removeFav(mid);
-                userService.removeMovie(mid);
+                userService.removeMovie(uid, mid);
+                vm.tagMovie.favs = vm.tagMovie.favs - 1;
             } else {
                 movieService.addFav(mid);
-                userService.addMovie(mid);
+                userService.addMovie(uid, mid);
+                vm.tagMovie.favs = vm.tagMovie.favs + 1;
             }
         }
 

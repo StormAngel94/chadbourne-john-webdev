@@ -16,13 +16,13 @@ module.exports = movieModel;
 
 
 function addFav(mid) {
-    return movieModel.update({_id: mid}, {$inc: {
+    return movieModel.update({tmdbId: mid}, {$inc: {
         favs: 1
     }})
 }
 
 function removeFav(mid) {
-    return movieModel.update({_id: mid}, {$inc: {
+    return movieModel.update({tmdbId: mid}, {$inc: {
         favs: -1
     }})
 }

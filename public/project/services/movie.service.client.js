@@ -31,6 +31,16 @@
             return $http.post(url);
         }
 
+        function addFav(mid) {
+            var url = "/api/movie/addFav/" + mid;
+            return $http.put(url);
+        }
+
+        function removeFav(mid) {
+            var url = "/api/movie/removeFav/" + mid;
+            return $http.put(url);
+        }
+
         return {
             "searchMovies": searchMovies,
             "getMovie": getMovie,
