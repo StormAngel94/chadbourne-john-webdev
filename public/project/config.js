@@ -48,7 +48,7 @@
                 }
             })
             .when("/search/go/movie/:mid", {
-                templateUrl: "./views/moviePages/templates/movie-page.html",
+                templateUrl: "./views/moviePages/templates/movie-page.view.client.html",
                 controller: "detailsController",
                 controllerAs: "model",
                 resolve: {

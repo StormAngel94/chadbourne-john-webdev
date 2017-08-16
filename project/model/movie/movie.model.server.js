@@ -27,9 +27,9 @@ function removeFav(mid) {
     }})
 }
 
-function addTag(mid, tid) {
-    return movieModel.update({_id: mid}, {$push: {
-        tags: tid
+function addTag(mid, tag) {
+    return movieModel.update({tmdbId: mid}, {$push: {
+        tags: tag
     }})
 }
 

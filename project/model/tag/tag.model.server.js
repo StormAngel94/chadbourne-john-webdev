@@ -11,6 +11,8 @@ tagModel.addMovie = addMovie;
 tagModel.removeMovie = removeMovie;
 tagModel.updateTag = updateTag;
 tagModel.searchTags = searchTags;
+tagModel.createTag = createTag;
+tagModel.searchTagByName = searchTagByName;
 module.exports = tagModel;
 
 
@@ -28,7 +30,7 @@ function removeFav(mid) {
 
 function addMovie(tid, mid) {
     return tagModel.update({_id: tid}, {$push: {
-        tags: mid
+        movies: mid
     }})
 }
 
@@ -48,4 +50,18 @@ function updateTag(tid, tag) {
 function searchTags(tag) {
     var searchTerm = '.*' + tag + '.*';
     return tagModel.find({username: {$regex : searchTerm}})
+}
+
+function createTag(tag) {
+    var _tag = new tagModel();
+    _tag.name = tag;
+    _tag.save(function (err, movie) {
+        if (err) return console.error(err);
+        return movie
+    });
+    return  _tag;
+}
+
+function searchTagByName(tag) {
+    return tagModel.findOne({name: tag});
 }

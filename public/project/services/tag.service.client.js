@@ -11,8 +11,23 @@
             return $http.get("/api/search/user/" + searchTerm);
         }
 
+        function findTag(newTag) {
+            return $http.get("/api/tag/searchTag?tagName=" + newTag);
+        }
+
+        function createTag(newTag) {
+            return $http.post("/api/tag/createTag?tagName=" + newTag);
+        }
+
+        function addMovie(tid, movie) {
+            return $http.put("/api/tag/" + tid + "/movie/" + movie);
+        }
+
         return {
-            "searchTags": searchTags
+            "searchTags": searchTags,
+            "findTag": findTag,
+            "createTag": createTag,
+            "addMovie": addMovie
         }
     }
 })();

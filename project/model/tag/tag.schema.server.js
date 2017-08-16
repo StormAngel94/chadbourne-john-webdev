@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var tagSchema = mongoose.Schema({
     name:           String,
     description:    String,
-    movies:         [{type: mongoose.Schema.Types.ObjectId, ref:"movieSchema"}],
+    movies:         {type: [String], default: []},
     favs:           Number
 });
 module.exports = tagSchema;

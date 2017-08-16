@@ -10,6 +10,7 @@ module.exports = function () {
     app.post("/api/movie/create/:mid", createMovie);
     app.put("/api/movie/addFav/:mid", addFav);
     app.put("/api/movie/removeFav/:mid", removeFav);
+    app.put("/api/movie/:mid/addTag/:tag" , addTag);
 };
 
 function findMovie(req, res) {
@@ -39,6 +40,15 @@ function addFav(req, res) {
 function removeFav(req, res) {
     var mid = req.params.mid;
     movieModel.removeFav(mid)
+        .then(function (movie) {
+            res.json(movie);
+        })
+}
+
+function addTag(req, res) {
+    var mid = req.params.mid;
+    var tag = req.params.tag;
+    movieModel.addTag(mid, tag)
         .then(function (movie) {
             res.json(movie);
         })

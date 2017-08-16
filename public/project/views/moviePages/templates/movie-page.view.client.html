@@ -5,8 +5,8 @@
              class="reactive-pic">
 
         <a ng-click="model.goToTag(tag)"
-           ng-repeat="tag in model.tags"
-           class="btn btn-block btn-primary general"></a>
+           ng-repeat="tag in model.tagMovie.tags"
+           class="btn btn-block btn-primary general">{{tag}}</a>
     </div>
 
     <div>
@@ -21,7 +21,7 @@
         <h3>Revenue: ${{model.movie.revenue}}</h3>
         <h3>Release Date: {{model.movie.release_date}}</h3>
         <p>Overview: {{model.movie.overview}}</p>
-        <form>
+        <form ng-show="model.user">
             <label for="tag" class="inline">Add Tag:</label>
             <input id="tag"
                    name="Tag Name"

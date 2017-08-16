@@ -41,13 +41,19 @@
             return $http.put(url);
         }
 
+        function addTag(mid, tag) {
+            var url = "/api/movie/" + mid + "/addTag/" + tag;
+            return $http.put(url);
+        }
+
         return {
             "searchMovies": searchMovies,
             "getMovie": getMovie,
             "findMovie": findMovie,
             "createMovie": createMovie,
             "addFav": addFav,
-            "removeFav": removeFav
+            "removeFav": removeFav,
+            "addTag": addTag
         }
     }
 })();

@@ -6,7 +6,7 @@
         .module("tagMovies")
         .controller("detailsController", detailsController);
     
-    function detailsController($routeParams, $location, user, movieService, userService) {
+    function detailsController($routeParams, $location, user, movieService, userService, tagService) {
         var vm = this;
         vm.user = user;
 
@@ -34,6 +34,7 @@
         vm.logout = logout;
         vm.goToTag = goToTag;
         vm.favorite = favorite;
+        vm.addTag = addTag;
 
         function goToLogin() {
             $location.url("/login")
@@ -51,8 +52,8 @@
             $location.url("/ADMIN/base")
         }
 
-        function goToTag() {
-            $location.url("/search/go/tag/:tid")
+        function goToTag(tid) {
+            $location.url("/search/go/tag/" + tid)
         }
 
         function logout() {
@@ -69,12 +70,11 @@
             if(vm.user.movies && contains(vm.user.movies, mid)) {
                 movieService.removeFav(mid);
                 userService.removeMovie(uid, mid);
-                vm.tagMovie.favs = vm.tagMovie.favs - 1;
             } else {
                 movieService.addFav(mid);
                 userService.addMovie(uid, mid);
-                vm.tagMovie.favs = vm.tagMovie.favs + 1;
             }
+            location.reload()
         }
 
         function contains(a, obj) {
@@ -84,6 +84,26 @@
                 }
             }
             return false;
+        }
+
+        function addTag(newTag) {
+            tagService.findTag(newTag)
+                .then(function (response) {
+                    var tag = response.data;
+                    if(tag === null) {
+                        tagService.createTag(newTag)
+                            .then(function (response) {
+                                tag = response;
+                                movieService.addTag(newTag);
+                                tagService.addMovie(tag._id, newTag);
+                                location.reload();
+                            })
+                    } else {
+                        movieService.addTag(vm.tagMovie.tmdbId, newTag);
+                        tagService.addMovie(tag._id, vm.tagMovie.tmdbId);
+                        location.reload();
+                    }
+                })
         }
     }
 })();
