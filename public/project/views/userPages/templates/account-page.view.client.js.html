@@ -56,7 +56,14 @@
         <h3>Favorited Tags:</h3>
         <ul class="list-group">
             <li ng-repeat="tag in model.tags" class="list-group-item">
-                <a ng-click="model.goToTag(movie)" class="normal">{{tag.name}}</a>
+                <a ng-click="model.goToTag(tag)" class="normal">{{tag.name}}</a>
+            </li>
+        </ul>
+
+        <h3>Followed Users:</h3>
+        <ul class="list-group">
+            <li ng-repeat="user in model.users" class="list-group-item">
+                <a ng-click="model.goToUser(user)" class="normal">{{user.username}}</a>
             </li>
         </ul>
     </div>

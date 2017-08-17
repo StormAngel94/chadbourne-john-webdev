@@ -1,12 +1,12 @@
 <div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
 
 <div class="main full">
-    <div class="left">
+    <div>
         <h1 class="inline">{{model.other.username}}'s Profile</h1>
-        <div class="alert alert-success inline"
-             ng-show="model.updateMessage">
-            {{model.updateMessage}}
-        </div>
+        <a ng-show="model.user"
+           ng-click="model.follow()"
+           class="btn btn-block btn-primary glyphSize inline right">
+            <span class="glyphicon glyphicon-plus"></span></a>
     </div>
     <div class="left">
         <form method="post" action="/api/update" enctype="multipart/form-data">
@@ -42,10 +42,24 @@
     </div>
 
     <div class="right">
-        <ul>
-            <li ng-repeat="movie in model.other.favedMovies">
-                <a class="left" ng-click="model.goToMovie(movie)">{{movie.title}}</a>
-                <img src="movie.poster"
+        <h3>Favorited Movies:</h3>
+        <ul class="list-group">
+            <li ng-repeat="movie in model.movies" class="list-group-item">
+                <a ng-click="model.goToMovie(movie)" class="normal">{{movie.title}}</a>
+            </li>
+        </ul>
+
+        <h3>Favorited Tags:</h3>
+        <ul class="list-group">
+            <li ng-repeat="tag in model.tags" class="list-group-item">
+                <a ng-click="model.goToTag(tag)" class="normal">{{tag.name}}</a>
+            </li>
+        </ul>
+
+        <h3>Followed Users:</h3>
+        <ul class="list-group">
+            <li ng-repeat="user in model.users" class="list-group-item">
+                <a ng-click="model.goToUser(user)" class="normal">{{user.username}}</a>
             </li>
         </ul>
     </div>

@@ -79,6 +79,14 @@
                     user: checkLogin
                 }
             })
+            .when("/ADMIN", {
+                templateUrl: "./views/adminPages/templates/admin-page.view.client.html",
+                controller: "adminController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginADMIN
+                }
+            })
     }
 
     function checkLogin(userService, $q) {
@@ -101,6 +109,21 @@
             .then(function (response) {
                 var user = response.data;
                 if(user === '0') {
+                    deferred.reject();
+                    $location.url("/login")
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkLoginADMIN(userService, $q, $location) {
+        var deferred = $q.defer();
+        userService.checkLogin()
+            .then(function (response) {
+                var user = response.data;
+                if(user === '0' || user.isAdmin === false) {
                     deferred.reject();
                     $location.url("/login")
                 } else {

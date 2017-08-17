@@ -10,6 +10,8 @@ var userSchema = mongoose.Schema({
     email:          String,
     movies:         {type: [Number], default: []},
     tags:           {type: [{type: mongoose.Schema.Types.ObjectId, ref:"tagSchema"}], default: []},
-    dateCreated:    {type: Date, default: Date.now}
+    users:           {type: [{type: mongoose.Schema.Types.ObjectId, ref:"userSchema"}], default: []},
+    dateCreated:    {type: Date, default: Date.now},
+    isAdmin:        {type: Boolean, default: false}
 });
 module.exports = userSchema;

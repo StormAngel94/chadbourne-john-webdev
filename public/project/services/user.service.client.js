@@ -16,6 +16,11 @@
             return $http.get(url, id);
         }
 
+        function findUserByIdSafe(id) {
+            var url = "/api/user/safe/" + id;
+            return $http.get(url, id);
+        }
+
         function nameTaken(username) {
             return $http.get("/api/user?username=" + username);
         }
@@ -56,9 +61,18 @@
             return $http.put("/api/user/" + uid + "/removeTag/" + tid);
         }
 
+        function follow(uid, oid) {
+            return $http.put("/api/user/" + uid + "/follow/" + oid);
+        }
+
+        function unfollow(uid, oid) {
+            return $http.put("/api/user/" + uid + "/unfollow/" + oid);
+        }
+
         return {
             "createUser": createUser,
             "findUserById": findUserById,
+            "findUserByIdSafe": findUserByIdSafe,
             "nameTaken": nameTaken,
             "login": login,
             "updateUser": updateUser,
@@ -68,7 +82,9 @@
             "addMovie": addMovie,
             "removeMovie": removeMovie,
             "addTag": addTag,
-            "removeTag": removeTag
+            "removeTag": removeTag,
+            "follow": follow,
+            "unfollow": unfollow
         }
     }
 })();

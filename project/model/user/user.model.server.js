@@ -10,6 +10,7 @@ var userModel = mongoose.model("userModel", userSchema);
 userModel.createUser = createUser;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserById = findUserById;
+userModel.findUserByIdSafe = findUserByIdSafe;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
@@ -18,6 +19,8 @@ userModel.addMovie = addMovie;
 userModel.removeMovie = removeMovie;
 userModel.addTag = addTag;
 userModel.removeTag = removeTag;
+userModel.follow = follow;
+userModel.unfollow = unfollow;
 
 module.exports = userModel;
 
@@ -44,6 +47,10 @@ function findUserByUsername(username) {
 
 function findUserById(id) {
     return userModel.findById(id);
+}
+
+function findUserByIdSafe(id) {
+    return userModel.findOne({_id:id}, {username:1});
 }
 
 function findUserByCredentials(username, password) {
@@ -92,5 +99,17 @@ function addTag(uid, mid) {
 function removeTag(uid, mid) {
     return userModel.update({_id: uid}, {$pull: {
         tags: mid
+    }})
+}
+
+function follow(uid, oid) {
+    return userModel.update({_id: uid}, {$push: {
+        users: oid
+    }})
+}
+
+function unfollow(uid, oid) {
+    return userModel.update({_id: uid}, {$pull: {
+        users: oid
     }})
 }

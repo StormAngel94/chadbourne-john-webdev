@@ -18,7 +18,7 @@
                     <li><a ng-click="model.goToLogin()" ng-show="!model.user">Login</a></li>
                     <li><a ng-click="model.goToRegister()" ng-show="!model.user">Register</a></li>
                     <li><a ng-click="model.goToAccount()" ng-show="model.user">Profile</a></li>
-                    <li><a ng-click="model.goToAdmin()" ng-show="model.isAdmin">ADMIN</a></li>
+                    <li><a ng-click="model.goToAdmin()" ng-show="model.user.isAdmin">ADMIN</a></li>
                     <li><a ng-click="model.logout()" ng-show="model.user">Logout</a></li>
                 </ul>
                 <form>

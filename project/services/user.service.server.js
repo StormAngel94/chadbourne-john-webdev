@@ -14,11 +14,14 @@ module.exports = function () {
     app.get("/api/search/user/:user", searchUsers);
     app.get("/api/user", nameTaken);
     app.get("/api/user/:uid", findUserById);
+    app.get("/api/user/safe/:uid", findUserByIdSafe);
     app.post("/api/user", createUser);
     app.put("/api/user/:uid/addMovie/:mid", addMovie);
     app.put("/api/user/:uid/removeMovie/:mid", removeMovie);
     app.put("/api/user/:uid/addTag/:tid", addTag);
     app.put("/api/user/:uid/removeTag/:tid", removeTag);
+    app.put("/api/user/:uid/follow/:oid", follow);
+    app.put("/api/user/:uid/unfollow/:oid", unfollow);
     app.post("/api/updateUser", updateUser);
     app.post("/api/login", passport.authenticate('local'), login);
     app.delete("/api/user/:uid", deleteUser);
@@ -140,6 +143,32 @@ function searchUsers(req, res) {
 function findUserById(req, res) {
     var uid = req.params.uid;
     userModel.findUserById(uid)
+        .then(function (response) {
+            res.send(response);
+        })
+}
+
+function findUserByIdSafe(req, res) {
+    var uid = req.params.uid;
+    userModel.findUserByIdSafe(uid)
+        .then(function (response) {
+            res.send(response);
+        })
+}
+
+function follow(req, res) {
+    var uid = req.params.uid;
+    var oid = req.params.oid;
+    userModel.follow(uid, oid)
+        .then(function (response) {
+            res.send(response);
+        })
+}
+
+function unfollow(req, res) {
+    var uid = req.params.uid;
+    var oid = req.params.oid;
+    userModel.unfollow(uid, oid)
         .then(function (response) {
             res.send(response);
         })
