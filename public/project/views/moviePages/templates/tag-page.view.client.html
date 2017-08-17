@@ -1,1 +1,29 @@
 <div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
+
+<div class="general">
+    <div class="left-narrow">
+        <h5>Movies:</h5>
+        <a ng-click="model.goToMovie(movie)"
+           ng-repeat="movie in model.movies"
+           class="btn btn-block btn-primary general">{{movie.title}}</a>
+    </div>
+
+    <div class="right-wide">
+        <h1 class="noMargins left">{{model.tag.name}}</h1>
+        <a ng-show="model.user"
+           ng-click="model.editTag()"
+           class="btn btn-block btn-primary inline right glyphSize">
+            <span class="glyphicon glyphicon-check"></span></a>
+    </div>
+    <div class="right-wide">
+        <div>
+            <p ng-show="model.tag.description" class="clear">{{model.tag.description}}</p>
+            <a ng-show="model.user"
+               ng-click="model.favorite()"
+               class="btn btn-block btn-primary inline clear">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            <h3 class="clear inline">Favorites:</h3>
+            <h2 class="inline clear">{{model.tag.favs}}</h2>
+        </div>
+    </div>
+</div>

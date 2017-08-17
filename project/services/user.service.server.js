@@ -15,8 +15,10 @@ module.exports = function () {
     app.get("/api/user", nameTaken);
     app.get("/api/user/:uid", findUserById);
     app.post("/api/user", createUser);
-    app.post("/api/user/:uid/addMovie/:mid", addMovie);
-    app.post("/api/user/:uid/removeMovie/:mid", removeMovie);
+    app.put("/api/user/:uid/addMovie/:mid", addMovie);
+    app.put("/api/user/:uid/removeMovie/:mid", removeMovie);
+    app.put("/api/user/:uid/addTag/:tid", addTag);
+    app.put("/api/user/:uid/removeTag/:tid", removeTag);
     app.post("/api/updateUser", updateUser);
     app.post("/api/login", passport.authenticate('local'), login);
     app.delete("/api/user/:uid", deleteUser);
@@ -84,6 +86,24 @@ function removeMovie(req, res) {
     var uid = req.params.uid;
     var mid = req.params.mid;
     userModel.removeMovie(uid, mid)
+        .then(function (response) {
+            res.json(response);
+        });
+}
+
+function addTag(req, res) {
+    var uid = req.params.uid;
+    var tid = req.params.tid;
+    userModel.addTag(uid, tid)
+        .then(function (response) {
+            res.json(response);
+        });
+}
+
+function removeTag(req, res) {
+    var uid = req.params.uid;
+    var tid = req.params.tid;
+    userModel.removeTag(uid, tid)
         .then(function (response) {
             res.json(response);
         });

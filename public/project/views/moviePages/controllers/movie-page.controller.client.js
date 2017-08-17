@@ -20,7 +20,7 @@
                 .then(function (response) {
                     vm.tagMovie = response.data;
                     if(vm.tagMovie === null) {
-                        movieService.createMovie(vm.mid);
+                        movieService.createMovie(vm.mid, vm.movie.title);
                     }
                 })
         }

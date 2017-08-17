@@ -44,9 +44,10 @@ function findMovie(mid) {
         .findOne({tmdbId: mid})
 }
 
-function createMovie(mid) {
+function createMovie(mid, title) {
     var _movie = new movieModel();
     _movie.tmdbId = mid;
+    _movie.title = title
     _movie.save(function (err, movie) {
         if (err) return console.error(err);
         return movie

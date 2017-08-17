@@ -41,11 +41,19 @@
         }
 
         function addMovie(uid, mid) {
-            return $http.post("/api/user/" + uid + "/addMovie/" + mid);
+            return $http.put("/api/user/" + uid + "/addMovie/" + mid);
         }
 
         function removeMovie(uid, mid) {
-            return $http.post("/api/user/" + uid + "/removeMovie/" + mid);
+            return $http.put("/api/user/" + uid + "/removeMovie/" + mid);
+        }
+
+        function addTag(uid, tid) {
+            return $http.put("/api/user/" + uid + "/addTag/" + tid);
+        }
+
+        function removeTag(uid, tid) {
+            return $http.put("/api/user/" + uid + "/removeTag/" + tid);
         }
 
         return {
@@ -58,7 +66,9 @@
             "checkLogin": checkLogin,
             "searchUsers": searchUsers,
             "addMovie": addMovie,
-            "removeMovie": removeMovie
+            "removeMovie": removeMovie,
+            "addTag": addTag,
+            "removeTag": removeTag
         }
     }
 })();

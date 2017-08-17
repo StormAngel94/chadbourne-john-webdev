@@ -13,6 +13,7 @@ tagModel.updateTag = updateTag;
 tagModel.searchTags = searchTags;
 tagModel.createTag = createTag;
 tagModel.searchTagByName = searchTagByName;
+tagModel.searchTagById = searchTagById;
 module.exports = tagModel;
 
 
@@ -42,14 +43,14 @@ function removeMovie(tid, mid) {
 
 function updateTag(tid, tag) {
     return tagModel.update({_id: tid}, {$set: {
-        name: tag.name,
-        description: tag.description
-    }})
+        name:           tag.name,
+        description:    tag.description
+    }});
 }
 
 function searchTags(tag) {
     var searchTerm = '.*' + tag + '.*';
-    return tagModel.find({username: {$regex : searchTerm}})
+    return tagModel.find({name: {$regex : searchTerm}})
 }
 
 function createTag(tag) {
@@ -63,5 +64,11 @@ function createTag(tag) {
 }
 
 function searchTagByName(tag) {
-    return tagModel.findOne({name: tag});
+    return tagModel.findOne({name: tag})
+        .populate('movies')
+        .exec();
+}
+
+function searchTagById(tid) {
+    return tagModel.findById(tid);
 }

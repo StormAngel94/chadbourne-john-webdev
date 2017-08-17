@@ -16,6 +16,8 @@ userModel.deleteUser = deleteUser;
 userModel.searchUsers = searchUsers;
 userModel.addMovie = addMovie;
 userModel.removeMovie = removeMovie;
+userModel.addTag = addTag;
+userModel.removeTag = removeTag;
 
 module.exports = userModel;
 
@@ -78,5 +80,17 @@ function addMovie(uid, mid) {
 function removeMovie(uid, mid) {
     return userModel.update({_id: uid}, {$pull: {
         movies: mid
+    }})
+}
+
+function addTag(uid, mid) {
+    return userModel.update({_id: uid}, {$push: {
+        tags: mid
+    }})
+}
+
+function removeTag(uid, mid) {
+    return userModel.update({_id: uid}, {$pull: {
+        tags: mid
     }})
 }

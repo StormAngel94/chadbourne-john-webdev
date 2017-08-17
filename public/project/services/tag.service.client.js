@@ -8,7 +8,7 @@
 
     function tagService($http) {
         function searchTags(searchTerm) {
-            return $http.get("/api/search/user/" + searchTerm);
+            return $http.get("/api/search/tag?searchTerm=" + searchTerm);
         }
 
         function findTag(newTag) {
@@ -23,11 +23,35 @@
             return $http.put("/api/tag/" + tid + "/movie/" + movie);
         }
 
+        function updateTag(tag) {
+            var tid = tag._id;
+            return $http.put("/api/tag/" + tid, tag);
+        }
+
+        function findTagById(tid) {
+            return $http.get("/api/tag/searchTag/" + tid);
+        }
+
+        function addFav(tid) {
+            return $http.put("/api/tag/addFav/" + tid);
+        }
+
+
+        function removeFav(tid) {
+            return $http.put("/api/tag/removeFav/" + tid);
+        }
+
+
+
         return {
             "searchTags": searchTags,
             "findTag": findTag,
             "createTag": createTag,
-            "addMovie": addMovie
+            "addMovie": addMovie,
+            "updateTag": updateTag,
+            "findTagById": findTagById,
+            "addFav": addFav,
+            "removeFav": removeFav
         }
     }
 })();

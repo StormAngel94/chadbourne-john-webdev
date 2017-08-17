@@ -1,0 +1,19 @@
+<div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
+<div class = main>
+    <form>
+        <label for="name" class="block">Name</label>
+        <input id="name"
+               name="Name"
+               ng-model="model.tag.name"
+               type="text"
+               class="form-control block">
+        <label for="description"
+               class="block">Description</label>
+        <textarea id="description"
+               name="Name"
+               ng-model="model.tag.description"
+               class="form-control block"></textarea>
+    </form>
+    <a ng-click="model.editTag(model.tag)"
+       class="btn btn-block btn-primary general">Submit</a>
+</div>

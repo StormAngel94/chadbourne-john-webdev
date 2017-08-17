@@ -63,6 +63,14 @@
                     user: checkLogin
                 }
             })
+            .when("/search/go/tag/:tid/edit", {
+                templateUrl: "./views/moviePages/templates/editTag-page.view.client.html",
+                controller: "tagEditController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginSecure
+                }
+            })
             .when("/search/go/user/:uid", {
                 templateUrl: "./views/userPages/templates/profile-page.view.client.html",
                 controller: "profileController",

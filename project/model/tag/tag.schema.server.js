@@ -7,6 +7,6 @@ var tagSchema = mongoose.Schema({
     name:           String,
     description:    String,
     movies:         {type: [String], default: []},
-    favs:           Number
+    favs:           {type: Number, default: 0}
 });
 module.exports = tagSchema;

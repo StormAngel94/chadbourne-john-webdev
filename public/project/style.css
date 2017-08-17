@@ -130,3 +130,28 @@ span.left {
     margin-left: 1%;
     width: 65%;
 }
+
+.block {
+    display: block;
+}
+
+.noMargins {
+    margin: 0;
+    width: 250px;
+}
+
+.glyphSize {
+    width: 40px;
+}
+
+.clear {
+    clear: both;
+}
+
+.noWrapping {
+    white-space: nowrap;
+}
+
+.list-group-item>a {
+    color: #666666;
+}

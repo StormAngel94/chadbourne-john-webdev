@@ -6,15 +6,35 @@
         .module("tagMovies")
         .controller("accountController", accountController);
 
-    function accountController($location, userService, user) {
+    function accountController($location, userService, movieService, tagService, user) {
         var vm = this;
         vm.user = user;
+        vm.movies = [];
+        vm.tags = [];
+        function init() {
+            for(var m in vm.user.movies) {
+                var mid =  vm.user.movies[m];
+                movieService.findMovie(mid)
+                    .then(function (resp) {
+                        vm.movies.push(resp.data);
+                    })
+            }
+            for(var t in vm.user.tags) {
+                var tid =  vm.user.tags[t];
+                tagService.findTagById(tid)
+                    .then(function (resp) {
+                        vm.tags.push(resp.data);
+                    })
+            }
+        }
+        init();
 
         vm.updateCurr = updateCurr;
         vm.goToLogin = goToLogin;
         vm.goToRegister = goToRegister;
         vm.goToAccount = goToAccount;
         vm.goToAdmin = goToAdmin;
+        vm.goToMovie = goToMovie;
         vm.goSearch = goSearch;
         vm.logout = logout;
 
@@ -37,6 +57,10 @@
 
         function goToAdmin() {
             $location.url("/ADMIN/base")
+        }
+
+        function goToMovie(movie) {
+            $location.url("/search/go/movie/" + movie.tmdbId);
         }
 
         function logout() {

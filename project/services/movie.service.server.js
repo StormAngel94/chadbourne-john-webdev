@@ -23,7 +23,8 @@ function findMovie(req, res) {
 
 function createMovie(req, res) {
     var mid = req.params.mid;
-    movieModel.createMovie(mid)
+    var title = req.query.title;
+    movieModel.createMovie(mid, title)
         .then(function (movie) {
             res.json(movie);
         })

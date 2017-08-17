@@ -26,8 +26,8 @@
             return $http.get("/api/movie/" + mid);
         }
 
-        function createMovie(mid) {
-            var url = "/api/movie/create/" + mid;
+        function createMovie(mid, title) {
+            var url = "/api/movie/create/" + mid + "?title=" + title;
             return $http.post(url);
         }
 
