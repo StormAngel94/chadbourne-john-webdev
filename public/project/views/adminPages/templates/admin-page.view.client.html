@@ -1,27 +1,28 @@
 <div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
+<div class="main general">
+    <div class="left-third">
+        <h2>Users:</h2>
+        <ul class="list-group inline noMargins">
+            <li ng-repeat="user in model.users" class="list-group-item">
+                <a ng-click="model.goToUser(user)" class="normal">{{user.username}}</a>
+            </li>
+        </ul>
+    </div>
 
-<div>
-    <h2>Users:</h2>
-    <ul class="list-group">
-        <li ng-repeat="user in model.users" class="list-group-item">
-            <a ng-click="model.goToUser(user)" class="normal">{{user.username}}</a>
-        </li>
-    </ul>
-</div>
-
-<div>
-    <h2>Movies:</h2>
-    <ul class="list-group">
-    <li ng-repeat="movie in model.movies" class="list-group-item">
-        <a ng-click="model.goToMovie(movie)" class="normal">{{movie.title}}</a>
-    </li>
-</ul>
-</div>
-<div>
-    <h2>Tags:</h2>
-    <ul class="list-group">
-    <li ng-repeat="tag in model.tags" class="list-group-item">
-        <a ng-click="model.goToTag(tag)" class="normal">{{tag.name}}</a>
-    </li>
-</ul>
+    <div class="center-third inline noMargins">
+        <h2>Movies:</h2>
+        <ul class="list-group">
+            <li ng-repeat="movie in model.movies" class="list-group-item">
+                <a ng-click="model.goToMovie(movie)" class="normal">{{movie.title}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="right-third inline middleMargins">
+        <h2>Tags:</h2>
+        <ul class="list-group">
+            <li ng-repeat="tag in model.tags" class="list-group-item">
+                <a ng-click="model.goToTag(tag)" class="normal">{{tag.name}}</a>
+            </li>
+        </ul>
+    </div>
 </div>

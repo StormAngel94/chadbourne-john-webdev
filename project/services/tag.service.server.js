@@ -6,6 +6,7 @@ module.exports = function () {
     var app = require("../../express");
 
     app.get("/api/tag/searchTag", searchTagByName);
+    app.get("/api/tag/all", findAllTags);
     app.get("/api/tag/searchTag/:tid", searchTagById);
     app.get("/api/search/tag", searchTags);
     app.post("/api/tag/createTag", createTag);
@@ -13,6 +14,8 @@ module.exports = function () {
     app.put("/api/tag/:tag", updateTag);
     app.put("/api/tag/addFav/:tag", addFav);
     app.put("/api/tag/removeFav/:tag", removeFav);
+    app.put("/api/tag/:tid/removeMovie/:mid", removeMovie);
+    app.delete("/api/tag/deleteTag/:tid", deleteTag);
 };
 
 function searchTagByName(req, res) {
@@ -74,5 +77,29 @@ function removeFav(req, res) {
     tagModel.removeFav(tid)
         .then(function (response) {
             res.json(response.data);
+        })
+}
+
+function findAllTags(req, res) {
+    tagModel.findAllTags()
+        .then(function (movie) {
+            res.json(movie);
+        })
+}
+
+function removeMovie(req, res) {
+    var tid = req.params.tid;
+    var mid = req.params.mid;
+    tagModel.removeMovie(tid, mid)
+        .then(function (movie) {
+            res.json(movie);
+        })
+}
+
+function deleteTag(req, res) {
+    var tid = req.params.tid;
+    tagModel.deleteTag(tid)
+        .then(function (movie) {
+            res.json(movie);
         })
 }

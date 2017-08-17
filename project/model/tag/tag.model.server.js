@@ -14,6 +14,9 @@ tagModel.searchTags = searchTags;
 tagModel.createTag = createTag;
 tagModel.searchTagByName = searchTagByName;
 tagModel.searchTagById = searchTagById;
+tagModel.findAllTags = findAllTags;
+tagModel.removeMovie = removeMovie;
+tagModel.deleteTag = deleteTag;
 module.exports = tagModel;
 
 
@@ -37,14 +40,15 @@ function addMovie(tid, mid) {
 
 function removeMovie(tid, mid) {
     return tagModel.update({_id: tid}, {$pull: {
-        tags: mid
+        movies: mid
     }})
 }
 
 function updateTag(tid, tag) {
     return tagModel.update({_id: tid}, {$set: {
         name:           tag.name,
-        description:    tag.description
+        description:    tag.description,
+        favs:           tag.favs
     }});
 }
 
@@ -65,10 +69,16 @@ function createTag(tag) {
 
 function searchTagByName(tag) {
     return tagModel.findOne({name: tag})
-        .populate('movies')
-        .exec();
 }
 
 function searchTagById(tid) {
     return tagModel.findById(tid);
+}
+
+function findAllTags() {
+    return tagModel.find({});
+}
+
+function deleteTag(tid) {
+    return tagModel.remove({_id: tid});
 }

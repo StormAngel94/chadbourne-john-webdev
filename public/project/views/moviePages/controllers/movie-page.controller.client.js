@@ -87,23 +87,25 @@
         }
 
         function addTag(newTag) {
-            tagService.findTag(newTag)
-                .then(function (response) {
-                    var tag = response.data;
-                    if(tag === null) {
-                        tagService.createTag(newTag)
-                            .then(function (response) {
-                                tag = response;
-                                movieService.addTag(newTag);
-                                tagService.addMovie(tag._id, newTag);
-                                location.reload();
-                            })
-                    } else {
-                        movieService.addTag(vm.tagMovie.tmdbId, newTag);
-                        tagService.addMovie(tag._id, vm.tagMovie.tmdbId);
-                        location.reload();
-                    }
-                })
+            if(newTag) {
+                tagService.findTag(newTag)
+                    .then(function (response) {
+                        var tag = response.data;
+                        if(tag === null) {
+                            tagService.createTag(newTag)
+                                .then(function (response) {
+                                    tag = response;
+                                    movieService.addTag(newTag);
+                                    tagService.addMovie(tag._id, newTag);
+                                    location.reload();
+                                })
+                        } else {
+                            movieService.addTag(vm.tagMovie.tmdbId, newTag);
+                            tagService.addMovie(tag._id, vm.tagMovie.tmdbId);
+                            location.reload();
+                        }
+                    })
+            }
         }
     }
 })();

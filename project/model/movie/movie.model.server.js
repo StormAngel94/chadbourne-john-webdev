@@ -11,6 +11,7 @@ movieModel.addTag = addTag;
 movieModel.removeTag = removeTag;
 movieModel.findMovie = findMovie;
 movieModel.createMovie = createMovie;
+movieModel.findAllMovies = findAllMovies;
 
 module.exports = movieModel;
 
@@ -34,7 +35,7 @@ function addTag(mid, tag) {
 }
 
 function removeTag(mid, tid) {
-    return movieModel.update({_id: mid}, {$pull: {
+    return movieModel.update({tmdbId: mid}, {$pull: {
         tags: tid
     }})
 }
@@ -47,10 +48,14 @@ function findMovie(mid) {
 function createMovie(mid, title) {
     var _movie = new movieModel();
     _movie.tmdbId = mid;
-    _movie.title = title
+    _movie.title = title;
     _movie.save(function (err, movie) {
         if (err) return console.error(err);
         return movie
     });
     return  _movie;
+}
+
+function findAllMovies() {
+    return movieModel.find({});
 }

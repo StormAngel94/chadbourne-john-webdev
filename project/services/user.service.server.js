@@ -14,6 +14,7 @@ module.exports = function () {
     app.get("/api/search/user/:user", searchUsers);
     app.get("/api/user", nameTaken);
     app.get("/api/user/:uid", findUserById);
+    app.get("/api/user/all/all", findAllUsers);
     app.get("/api/user/safe/:uid", findUserByIdSafe);
     app.post("/api/user", createUser);
     app.put("/api/user/:uid/addMovie/:mid", addMovie);
@@ -171,5 +172,12 @@ function unfollow(req, res) {
     userModel.unfollow(uid, oid)
         .then(function (response) {
             res.send(response);
+        })
+}
+
+function findAllUsers(req, res) {
+    userModel.findAllUsers()
+        .then(function (resp) {
+            res.json(resp);
         })
 }

@@ -21,6 +21,7 @@ userModel.addTag = addTag;
 userModel.removeTag = removeTag;
 userModel.follow = follow;
 userModel.unfollow = unfollow;
+userModel.findAllUsers = findAllUsers;
 
 module.exports = userModel;
 
@@ -68,9 +69,7 @@ function updateUser(uid, user) {
 }
 
 function deleteUser(id) {
-    return userModel.remove({_id: id}, function (err) {
-        if(err) handleError(err);
-    });
+    return userModel.remove({_id: id});
 }
 
 function searchUsers(user) {
@@ -96,9 +95,9 @@ function addTag(uid, mid) {
     }})
 }
 
-function removeTag(uid, mid) {
+function removeTag(uid, tid) {
     return userModel.update({_id: uid}, {$pull: {
-        tags: mid
+        tags: tid
     }})
 }
 
@@ -112,4 +111,8 @@ function unfollow(uid, oid) {
     return userModel.update({_id: uid}, {$pull: {
         users: oid
     }})
+}
+
+function findAllUsers() {
+    return userModel.find({});
 }

@@ -79,9 +79,33 @@
                     user: checkLogin
                 }
             })
-            .when("/ADMIN", {
+            .when("/ADMIN/base", {
                 templateUrl: "./views/adminPages/templates/admin-page.view.client.html",
                 controller: "adminController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginADMIN
+                }
+            })
+            .when("/ADMIN/user/:uid", {
+                templateUrl: "./views/adminPages/templates/adminUser-page.view.client.html",
+                controller: "adminUserController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginADMIN
+                }
+            })
+            .when("/ADMIN/movie/:mid", {
+                templateUrl: "./views/adminPages/templates/adminMovie-page.view.client.html",
+                controller: "adminMovieController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginADMIN
+                }
+            })
+            .when("/ADMIN/tag/:tid", {
+                templateUrl: "./views/adminPages/templates/adminTag-page.view.client.html",
+                controller: "adminTagController",
                 controllerAs: "model",
                 resolve: {
                     user: checkLoginADMIN

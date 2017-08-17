@@ -1,0 +1,40 @@
+<div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
+<div class="general main">
+    <div class="left">
+        <form>
+            <label for="name">Name</label>
+            <input name="Name"
+                   id="name"
+                   class="form-control"
+                   type="text"
+                   ng-model="model.tag.name">
+            <label for="description"
+                   class="block">Description</label>
+            <textarea id="description"
+                      name="Name"
+                      ng-model="model.tag.description"
+                      class="form-control block"></textarea>
+            <label for="favs">Favs</label>
+            <input name="Favs"
+                   id="favs"
+                   class="form-control"
+                   type="number"
+                   ng-model="model.tag.favs">
+        </form>
+        <a ng-click="model.submit(model.tag)"
+           class="btn btn-block btn-primary general">Submit</a>
+        <a ng-click="model.cancel(model.tag)"
+           class="btn btn-block btn-primary general">Cancel</a>
+        <a ng-click="model.delete(model.tag)"
+           class="btn btn-block btn-primary general">Delete</a>
+    </div>
+
+    <div class="right">
+        <h3>Movies:</h3>
+        <ul class="list-group">
+            <li ng-repeat="movie in model.movies" class="list-group-item">
+                <a ng-click="model.goToMovie(movie)" class="normal">{{movie.title}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

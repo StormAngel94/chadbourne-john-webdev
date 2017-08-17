@@ -69,6 +69,11 @@
             return $http.put("/api/user/" + uid + "/unfollow/" + oid);
         }
 
+        function findAllUsers() {
+            var url = "/api/user/all/all";
+            return $http.get(url);
+        }
+
         return {
             "createUser": createUser,
             "findUserById": findUserById,
@@ -84,7 +89,8 @@
             "addTag": addTag,
             "removeTag": removeTag,
             "follow": follow,
-            "unfollow": unfollow
+            "unfollow": unfollow,
+            "findAllUsers": findAllUsers
         }
     }
 })();

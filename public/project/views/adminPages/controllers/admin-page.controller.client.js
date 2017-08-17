@@ -4,36 +4,27 @@
 (function () {
     angular
         .module("tagMovies")
-        .controller("accountController", accountController);
+        .controller("adminController", adminController);
 
-    function accountController($location, userService, movieService, tagService, user) {
+    function adminController($location, userService, movieService, tagService, user) {
         var vm = this;
         vm.user = user;
         vm.movies = [];
         vm.tags = [];
         vm.users = [];
         function init() {
-            for(var m in vm.user.movies) {
-                var mid =  vm.user.movies[m];
-                movieService.findMovie(mid)
-                    .then(function (resp) {
-                        vm.movies.push(resp.data);
-                    })
-            }
-            for(var t in vm.user.tags) {
-                var tid =  vm.user.tags[t];
-                tagService.findTagById(tid)
-                    .then(function (resp) {
-                        vm.tags.push(resp.data);
-                    })
-            }
-            for(var u in vm.user.users) {
-                var uid =  vm.user.users[u];
-                userService.findUserByIdSafe(uid)
-                    .then(function (resp) {
-                        vm.users.push(resp.data);
-                    })
-            }
+            movieService.findAllMovies()
+                .then(function (movies) {
+                    vm.movies = movies.data;
+                });
+            tagService.findAllTags()
+                .then(function (tags) {
+                    vm.tags = tags.data;
+                });
+            userService.findAllUsers()
+                .then(function (users) {
+                    vm.users = users.data;
+                })
         }
         init();
 
@@ -70,15 +61,15 @@
         }
 
         function goToMovie(movie) {
-            $location.url("/search/go/movie/" + movie.tmdbId);
+            $location.url("/ADMIN/movie/" + movie.tmdbId);
         }
 
         function goToTag(tag) {
-            $location.url("/search/go/tag/" + tag._id);
+            $location.url("/ADMIN/tag/" + tag._id);
         }
 
         function goToUser(user) {
-            $location.url("/search/go/user/" + user._id);
+            $location.url("/ADMIN/user/" + user._id);
         }
 
         function logout() {

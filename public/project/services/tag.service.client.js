@@ -23,8 +23,7 @@
             return $http.put("/api/tag/" + tid + "/movie/" + movie);
         }
 
-        function updateTag(tag) {
-            var tid = tag._id;
+        function updateTag(tid, tag) {
             return $http.put("/api/tag/" + tid, tag);
         }
 
@@ -41,7 +40,20 @@
             return $http.put("/api/tag/removeFav/" + tid);
         }
 
+        function findAllTags() {
+            var url = "/api/tag/all";
+            return $http.get(url);
+        }
 
+        function removeMovie(tid, mid) {
+            var url = "/api/tag/" + tid + "/removeMovie/" + mid;
+            return $http.put(url);
+        }
+
+        function deleteTag(tid) {
+            var url = "/api/tag/deleteTag/" + tid;
+            return $http.delete(url);
+        }
 
         return {
             "searchTags": searchTags,
@@ -51,7 +63,10 @@
             "updateTag": updateTag,
             "findTagById": findTagById,
             "addFav": addFav,
-            "removeFav": removeFav
+            "removeFav": removeFav,
+            "findAllTags": findAllTags,
+            "removeMovie": removeMovie,
+            "deleteTag": deleteTag
         }
     }
 })();

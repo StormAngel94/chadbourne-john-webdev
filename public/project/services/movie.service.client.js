@@ -46,6 +46,17 @@
             return $http.put(url);
         }
 
+        function findAllMovies() {
+            var url = "/api/movie/all/all";
+            return $http.get(url);
+        }
+
+
+        function removeTag(mid, tid) {
+            var url = "/api/movie/" + mid + "/removeTag/" + tid;
+            return $http.put(url);
+        }
+
         return {
             "searchMovies": searchMovies,
             "getMovie": getMovie,
@@ -53,7 +64,9 @@
             "createMovie": createMovie,
             "addFav": addFav,
             "removeFav": removeFav,
-            "addTag": addTag
+            "addTag": addTag,
+            "findAllMovies": findAllMovies,
+            "removeTag": removeTag
         }
     }
 })();

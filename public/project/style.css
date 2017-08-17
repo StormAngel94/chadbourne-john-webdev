@@ -155,3 +155,19 @@ span.left {
 .list-group-item>a {
     color: #666666;
 }
+
+.left-third {
+    width: 30%;
+    float: left;
+}
+
+.center-third {
+    width: 30%;
+    float: left;
+    margin-left: 5%;
+}
+
+.right-third{
+    width: 30%;
+    float: right;
+}
