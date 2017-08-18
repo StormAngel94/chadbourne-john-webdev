@@ -167,7 +167,20 @@ span.left {
     margin-left: 5%;
 }
 
-.right-third{
+.right-third {
     width: 30%;
     float: right;
+}
+
+.bordered {
+    border: solid 1px #999999;
+}
+
+.hideOverflow {
+    overflow: hidden;
+}
+
+.bottom-home {
+    width: 100%;
+    float: left;
 }

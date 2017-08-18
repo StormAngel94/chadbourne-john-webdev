@@ -25,6 +25,7 @@ module.exports = function () {
     app.put("/api/user/:uid/unfollow/:oid", unfollow);
     app.post("/api/updateUser", updateUser);
     app.post("/api/login", passport.authenticate('local'), login);
+    app.post("/api/logout", logout);
     app.delete("/api/user/:uid", deleteUser);
     app.get("/api/checkLogin", checkLogin);
 };
@@ -180,4 +181,9 @@ function findAllUsers(req, res) {
         .then(function (resp) {
             res.json(resp);
         })
+}
+
+function logout(req, res) {
+    req.logout();
+    res.send("0");
 }

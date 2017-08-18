@@ -52,7 +52,10 @@
         }
 
         function logout() {
-            $location.url("/login")
+            userService.logout()
+                .then(function (response) {
+                    $location.url("/");
+                })
         }
 
         function goSearch(criteria) {

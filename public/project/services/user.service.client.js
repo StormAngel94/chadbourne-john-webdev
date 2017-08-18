@@ -74,6 +74,11 @@
             return $http.get(url);
         }
 
+        function logout() {
+            var url = "/api/logout";
+            return $http.post(url);
+        }
+
         return {
             "createUser": createUser,
             "findUserById": findUserById,
@@ -90,7 +95,8 @@
             "removeTag": removeTag,
             "follow": follow,
             "unfollow": unfollow,
-            "findAllUsers": findAllUsers
+            "findAllUsers": findAllUsers,
+            "logout": logout
         }
     }
 })();

@@ -13,3 +13,39 @@
         </div>
     </div>
 </div>
+
+<div class="general main">
+    <div class="bottom-home inline noMargins clear"
+         ng-show="!model.user">
+            <h2>Purpose:</h2>
+            <p>The purpose of TagMovies is to provide a database of movies, linked and structured in a user driven manner.
+            We aim to provide a means to link similar movies so that fans of one series or movie will be able to find
+            other enjoyable content.  To facilitate this, movies are linked to user defined tags, which can then be used
+            to find other similar movies.</p>
+    </div> <div class="left-third inline noMargins clear"
+         ng-show="model.user">
+            <h2>Purpose:</h2>
+            <p>The purpose of TagMovies is to provide a database of movies, linked and structured in a user driven manner.
+            We aim to provide a means to link similar movies so that fans of one series or movie will be able to find
+            other enjoyable content.  To facilitate this, movies are linked to user defined tags, which can then be used
+            to find other similar movies.</p>
+    </div>
+    <div class="center-third inline middleMargins"
+         ng-show="model.user">
+        <h2>Favorite Movies:</h2>
+        <ul class="list-group">
+            <li ng-repeat="movie in model.movies" class="list-group-item">
+                <a ng-click="model.goToMovie(movie)" class="normal">{{movie.title}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="right-third inline noMargins"
+         ng-show="model.user">
+        <h2>Favorite Tags:</h2>
+        <ul class="list-group">
+            <li ng-repeat="tag in model.tags" class="list-group-item">
+                <a ng-click="model.goToTag(tag)" class="normal">{{tag.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

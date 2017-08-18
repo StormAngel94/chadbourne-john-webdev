@@ -6,9 +6,30 @@
         .module("tagMovies")
         .controller("homeController", homeController);
 
-    function homeController($location, user) {
+    function homeController($location, user, userService, movieService, tagService) {
         var vm = this;
         vm.user = user;
+        vm.tags = [];
+        vm.movies = [];
+        function init() {
+            for(var m in vm.user.movies) {
+                var mid =  vm.user.movies[m];
+                movieService.findMovie(mid)
+                    .then(function (resp) {
+                        vm.movies.push(resp.data);
+                    })
+            }
+            for(var t in vm.user.tags) {
+                var tid =  vm.user.tags[t];
+                tagService.findTagById(tid)
+                    .then(function (resp) {
+                        vm.tags.push(resp.data);
+                    })
+            }
+        }
+        if(vm.user) {
+            init()
+        }
 
         vm.goToLogin = goToLogin;
         vm.goToRegister = goToRegister;
@@ -34,7 +55,10 @@
         }
 
         function logout() {
-            $location.url("/login")
+            userService.logout()
+                .then(function (response) {
+                    $location.url("/");
+                })
         }
 
         function goSearch(criteria) {
