@@ -2,6 +2,8 @@
  * Created by ember on 8/12/2017.
  */
 var tagModel= require("../model/tag/tag.model.server");
+var movieModel= require("../model/movie/movie.model.server");
+
 module.exports = function () {
     var app = require("../../express");
 
@@ -9,6 +11,7 @@ module.exports = function () {
     app.get("/api/tag/all", findAllTags);
     app.get("/api/tag/searchTag/:tid", searchTagById);
     app.get("/api/search/tag", searchTags);
+    app.get("/api/tag/getAll/:tid", getAllMoviesForTag);
     app.post("/api/tag/createTag", createTag);
     app.put("/api/tag/:tid/movie/:movie", addMovie);
     app.put("/api/tag/:tag", updateTag);
@@ -40,10 +43,9 @@ function searchTags(req, res) {
 }
 
 function createTag(req, res) {
-    tagModel.createTag(req.query.tagName)
-        .then(function (response) {
-            res.json(response.data);
-        })
+    var tagName = req.query.tagName;
+    tagModel.createTag(tagName);
+    res.send("0");
 }
 
 function addMovie(req, res) {
@@ -52,6 +54,15 @@ function addMovie(req, res) {
     tagModel.addMovie(tid, movie)
         .then(function (response) {
             res.json(response.data);
+        })
+}
+
+function removeMovie(req, res) {
+    var tid = req.params.tid;
+    var mid = req.params.mid;
+    tagModel.removeMovie(tid, mid)
+        .then(function (movie) {
+            res.json(movie);
         })
 }
 
@@ -87,19 +98,34 @@ function findAllTags(req, res) {
         })
 }
 
-function removeMovie(req, res) {
-    var tid = req.params.tid;
-    var mid = req.params.mid;
-    tagModel.removeMovie(tid, mid)
-        .then(function (movie) {
-            res.json(movie);
-        })
-}
-
 function deleteTag(req, res) {
     var tid = req.params.tid;
     tagModel.deleteTag(tid)
         .then(function (movie) {
             res.json(movie);
+        })
+}
+
+function getAllMoviesForTag(req, res) {
+    var tid = req.params.tid;
+    var _movies= [];
+    tagModel.searchTagById(tid)
+        .then(function (response) {
+            var movies = JSON.stringify(response.movies);
+            movies = JSON.parse(movies);
+            var promises = [];
+            for(var m in movies) {
+                var movie = movies[m];
+                var promise = movieModel.findMovie(movie);
+                promise
+                    .then(function (response) {
+                        _movies.push(response)
+                    });
+                promises.push(promise);
+            }
+            Promise.all(promises)
+                .then(function (response) {
+                    res.json(_movies);
+                })
         })
 }

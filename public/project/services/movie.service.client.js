@@ -66,6 +66,11 @@
             return $http.put(url, movie);
         }
 
+        function getAllTags(mid) {
+            var url = "/api/movie/getAll/" + mid;
+            return $http.get(url);
+        }
+
         return {
             "searchMovies": searchMovies,
             "getMovie": getMovie,
@@ -77,7 +82,8 @@
             "findAllMovies": findAllMovies,
             "removeTag": removeTag,
             "deleteMovie": deleteMovie,
-            "updateMovie": updateMovie
+            "updateMovie": updateMovie,
+            "getAllTags": getAllTags
         }
     }
 })();

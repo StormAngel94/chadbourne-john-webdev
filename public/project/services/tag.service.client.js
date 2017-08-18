@@ -55,6 +55,11 @@
             return $http.delete(url);
         }
 
+        function getAllMovies(tid) {
+            var url = "/api/tag/getAll/" + tid;
+            return $http.get(url);
+        }
+
         return {
             "searchTags": searchTags,
             "findTag": findTag,
@@ -66,7 +71,8 @@
             "removeFav": removeFav,
             "findAllTags": findAllTags,
             "removeMovie": removeMovie,
-            "deleteTag": deleteTag
+            "deleteTag": deleteTag,
+            "getAllMovies": getAllMovies
         }
     }
 })();

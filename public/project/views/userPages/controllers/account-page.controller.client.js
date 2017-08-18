@@ -13,27 +13,18 @@
         vm.tags = [];
         vm.users = [];
         function init() {
-            for(var m in vm.user.movies) {
-                var mid =  vm.user.movies[m];
-                movieService.findMovie(mid)
-                    .then(function (resp) {
-                        vm.movies.push(resp.data);
-                    })
-            }
-            for(var t in vm.user.tags) {
-                var tid =  vm.user.tags[t];
-                tagService.findTagById(tid)
-                    .then(function (resp) {
-                        vm.tags.push(resp.data);
-                    })
-            }
-            for(var u in vm.user.users) {
-                var uid =  vm.user.users[u];
-                userService.findUserByIdSafe(uid)
-                    .then(function (resp) {
-                        vm.users.push(resp.data);
-                    })
-            }
+            userService.getAllTags(vm.user._id)
+                .then(function (response) {
+                    vm.tags = response.data;
+                    userService.getAllMovies(vm.user._id)
+                        .then(function (response) {
+                            vm.movies = response.data;
+                            userService.getAllUsers(vm.user._id)
+                                .then(function (response) {
+                                    vm.users = response.data;
+                                })
+                        });
+                });
         }
         init();
 

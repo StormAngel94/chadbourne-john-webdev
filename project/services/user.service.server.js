@@ -2,6 +2,9 @@
  * Created by ember on 7/28/2017.
  */
 var userModel = require("../model/user/user.model.server");
+var movieModel = require("../model/movie/movie.model.server");
+var tagModel = require("../model/tag/tag.model.server");
+
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(localStrategy));
@@ -16,6 +19,9 @@ module.exports = function () {
     app.get("/api/user/:uid", findUserById);
     app.get("/api/user/all/all", findAllUsers);
     app.get("/api/user/safe/:uid", findUserByIdSafe);
+    app.get("/api/user/getAll/tags/:uid", findTagsForUser);
+    app.get("/api/user/getAll/movies/:uid", findMoviesForUser);
+    app.get("/api/user/getAll/users/:uid", findUsersForUser);
     app.post("/api/user", createUser);
     app.put("/api/user/:uid/addMovie/:mid", addMovie);
     app.put("/api/user/:uid/removeMovie/:mid", removeMovie);
@@ -186,4 +192,76 @@ function findAllUsers(req, res) {
 function logout(req, res) {
     req.logout();
     res.send("0");
+}
+
+function findMoviesForUser(req, res) {
+    var uid = req.params.uid;
+    var _movies= [];
+    userModel.findUserById(uid)
+        .then(function (response) {
+            var movies = JSON.stringify(response.movies);
+            movies = JSON.parse(movies);
+            var promises = [];
+            for(var m in movies) {
+                var movie = movies[m];
+                var promise = movieModel.findMovie(movie);
+                promise
+                    .then(function (response) {
+                        _movies.push(response)
+                    });
+                promises.push(promise);
+            }
+            Promise.all(promises)
+                .then(function (response) {
+                    res.json(_movies);
+                })
+        })
+}
+
+function findTagsForUser(req, res) {
+    var uid = req.params.uid;
+    var _tags = [];
+    userModel.findUserById(uid)
+        .then(function (response) {
+            var tags = JSON.stringify(response.tags);
+            tags = JSON.parse(tags);
+            var promises = [];
+            for(var t in tags) {
+                var tag = tags[t];
+                var promise = tagModel.searchTagById(tag);
+                promise
+                    .then(function (response) {
+                        _tags.push(response)
+                    });
+                promises.push(promise);
+            }
+            Promise.all(promises)
+                .then(function (response) {
+                    res.json(_tags);
+                })
+        })
+}
+
+function findUsersForUser(req, res) {
+    var uid = req.params.uid;
+    var _users = [];
+    userModel.findUserById(uid)
+        .then(function (response) {
+            var users = JSON.stringify(response.users);
+            users = JSON.parse(users);
+            var promises = [];
+            for(var u in users) {
+                var user = users[u];
+                var promise = userModel.findUserById(user);
+                promise
+                    .then(function (response) {
+                        _users.push(response)
+                    });
+                promises.push(promise);
+            }
+            Promise.all(promises)
+                .then(function (response) {
+                    res.json(_users);
+                })
+        })
 }

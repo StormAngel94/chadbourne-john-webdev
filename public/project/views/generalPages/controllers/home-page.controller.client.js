@@ -12,20 +12,14 @@
         vm.tags = [];
         vm.movies = [];
         function init() {
-            for(var m in vm.user.movies) {
-                var mid =  vm.user.movies[m];
-                movieService.findMovie(mid)
-                    .then(function (resp) {
-                        vm.movies.push(resp.data);
-                    })
-            }
-            for(var t in vm.user.tags) {
-                var tid =  vm.user.tags[t];
-                tagService.findTagById(tid)
-                    .then(function (resp) {
-                        vm.tags.push(resp.data);
-                    })
-            }
+            userService.getAllTags(vm.user._id)
+                .then(function (response) {
+                    vm.tags = response.data;
+                    userService.getAllMovies(vm.user._id)
+                        .then(function (response) {
+                            vm.movies = response.data;
+                        });
+                });
         }
         if(vm.user) {
             init()
@@ -35,6 +29,8 @@
         vm.goToRegister = goToRegister;
         vm.goToAccount = goToAccount;
         vm.goToAdmin = goToAdmin;
+        vm.goToMovie = goToMovie;
+        vm.goToTag = goToTag;
         vm.goSearch = goSearch;
         vm.logout = logout;
 
@@ -52,6 +48,14 @@
 
         function goToAdmin() {
             $location.url("/ADMIN/base")
+        }
+
+        function goToMovie(movie) {
+            $location.url("/search/go/movie/" + movie.tmdbId);
+        }
+
+        function goToTag(tag) {
+            $location.url("/search/go/tag/" + tag._id);
         }
 
         function logout() {

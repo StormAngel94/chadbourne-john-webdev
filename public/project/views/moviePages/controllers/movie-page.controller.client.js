@@ -5,7 +5,7 @@
     angular
         .module("tagMovies")
         .controller("detailsController", detailsController);
-    
+
     function detailsController($routeParams, $location, user, movieService, userService, tagService) {
         var vm = this;
         vm.user = user;
@@ -20,29 +20,20 @@
             movieService.findMovie(vm.mid)
                 .then(function (response) {
                     vm.tagMovie = response.data;
-                    if(vm.tagMovie === null) {
-                        movieService.createMovie(vm.mid, vm.movie.title)
-                            .then(function (response){
-                                vm.tagMovie = response.data;
-                                getTags()
-                        })
-                    } else {
-                        getTags();
+                    if(vm.tagMovie !== null) {
+                        movieService.getAllTags(vm.mid)
+                            .then(function (response) {
+                                vm.tags = response.data;
+                            })
+                        }
+                    else {
+                        vm.noMovie = true;
+                        vm.tagMovie = {};
+                        vm.tagMovie.favs = 0;
                     }
-
                 })
         }
         init();
-
-        function getTags() {
-            for(var t in vm.tagMovie.tags) {
-                var tag = vm.tagMovie.tags[t];
-                tagService.findTag(tag)
-                    .then(function (response) {
-                        vm.tags.push(response.data);
-                    })
-            }
-        }
 
         vm.goToLogin = goToLogin;
         vm.goToRegister = goToRegister;
@@ -86,6 +77,12 @@
         }
 
         function favorite() {
+            if(vm.noMovie) {
+                movieService.createMovie(vm.mid, vm.movie.title)
+                    .then(function (response) {
+                        vm.tagMovie = response.data;
+                    })
+            }
             var mid = vm.movie.id;
             var uid = vm.user._id;
             if(vm.user.movies && contains(vm.user.movies, mid)) {
@@ -95,7 +92,7 @@
                 movieService.addFav(mid);
                 userService.addMovie(uid, mid);
             }
-            location.reload()
+            location.reload();
         }
 
         function contains(a, obj) {
@@ -108,14 +105,21 @@
         }
 
         function addTag(newTag) {
+            if(vm.noMovie) {
+                movieService.createMovie(vm.mid, vm.movie.title)
+                    .then(function (response) {
+                        vm.tagMovie = response.data;
+                    })
+            }
             if(newTag) {
                 tagService.findTag(newTag)
                     .then(function (response) {
                         var tag = response.data;
                         if(tag === null) {
-                            tagService.createTag(newTag)
+                            tagService.createTag(newTag);
+                            tagService.findTag(newTag)
                                 .then(function (response) {
-                                    tag = response;
+                                    tag = response.data;
                                     movieService.addTag(newTag);
                                     tagService.addMovie(tag._id, newTag);
                                     location.reload();
@@ -127,6 +131,8 @@
                         }
                     })
             }
+
         }
     }
 })();
+

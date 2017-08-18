@@ -15,13 +15,10 @@
             tagService.findTagById(vm.tid)
                 .then(function (response) {
                     vm.tag = response.data;
-                    for(var m in vm.tag.movies) {
-                        var mid =  vm.tag.movies[m];
-                        movieService.findMovie(mid)
-                            .then(function (resp) {
-                                vm.movies.push(resp.data);
-                            })
-                    }
+                    tagService.getAllMovies(vm.tid)
+                        .then(function (response) {
+                            vm.movies = response.data;
+                        });
                 })
         }
         init();

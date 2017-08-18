@@ -2,12 +2,14 @@
  * Created by ember on 8/12/2017.
  */
 var movieModel = require("../model/movie/movie.model.server");
+var tagModel = require("../model/tag/tag.model.server");
 
 module.exports = function () {
     var app = require("../../express");
 
     app.get("/api/movie/:mid", findMovie);
     app.get("/api/movie/all/all", findAllMovies);
+    app.get("/api/movie/getAll/:mid", getTagsForMovie);
     app.post("/api/movie/create/:mid", createMovie);
     app.put("/api/movie/addFav/:mid", addFav);
     app.put("/api/movie/removeFav/:mid", removeFav);
@@ -28,7 +30,8 @@ function findMovie(req, res) {
 function createMovie(req, res) {
     var mid = req.params.mid;
     var title = req.query.title;
-    movieModel.createMovie(mid, title)
+    movieModel.createMovie(mid, title);
+    movieModel.findMovie(mid)
         .then(function (movie) {
             res.json(movie);
         })
@@ -89,5 +92,29 @@ function updateMovie(req, res) {
     movieModel.updateMovie(mid, movie)
         .then(function (movie) {
             res.json(movie);
+        })
+}
+
+function getTagsForMovie(req, res) {
+    var mid = req.params.mid;
+    var _tags = []
+    movieModel.findMovie(mid)
+        .then(function (response) {
+            var tags = JSON.stringify(response.tags);
+            tags = JSON.parse(tags);
+            var promises = [];
+            for(var t in tags) {
+                var tag = tags[t];
+                var promise = tagModel.searchTagByName(tag);
+                promise
+                    .then(function (response) {
+                        _tags.push(response)
+                    });
+                promises.push(promise);
+            }
+            Promise.all(promises)
+                .then(function (response) {
+                    res.json(_tags);
+                })
         })
 }

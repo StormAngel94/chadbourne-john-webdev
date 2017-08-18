@@ -17,30 +17,22 @@
             userService.findUserById(vm.otherId)
                 .then(function (response) {
                     vm.other = response.data;
-                    for(var m in vm.other.movies) {
-                        var mid =  vm.other.movies[m];
-                        movieService.findMovie(mid)
-                            .then(function (resp) {
-                                vm.movies.push(resp.data);
-                            })
-                    }
-                    for(var t in vm.other.tags) {
-                        var tid =  vm.other.tags[t];
-                        tagService.findTagById(tid)
-                            .then(function (resp) {
-                                vm.tags.push(resp.data);
-                            })
-                    }
-                    for(var u in vm.other.users) {
-                        var uid =  vm.other.users[u];
-                        userService.findUserByIdSafe(uid)
-                            .then(function (resp) {
-                                vm.users.push(resp.data);
-                            })
-                    }
-                })
+                    userService.getAllTags(vm.otherId)
+                        .then(function (response) {
+                            vm.tags = response.data;
+                            userService.getAllMovies(vm.otherId)
+                                .then(function (response) {
+                                    vm.movies = response.data;
+                                    userService.getAllUsers(vm.otherId)
+                                        .then(function (response) {
+                                            vm.users = response.data;
+                                        })
+                                });
+                        });
+                });
         }
         init();
+
 
         vm.updateCurr = updateCurr;
         vm.goToLogin = goToLogin;

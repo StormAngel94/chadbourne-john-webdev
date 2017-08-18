@@ -17,6 +17,8 @@ tagModel.searchTagById = searchTagById;
 tagModel.findAllTags = findAllTags;
 tagModel.removeMovie = removeMovie;
 tagModel.deleteTag = deleteTag;
+tagModel.searchTagGroup = searchTagGroup;
+
 module.exports = tagModel;
 
 
@@ -81,4 +83,16 @@ function findAllTags() {
 
 function deleteTag(tid) {
     return tagModel.remove({_id: tid});
+}
+
+function searchTagGroup(tags) {
+    var _tags = [];
+    for(var t in tags) {
+        var tag = tags[t];
+        tagModel.findOne({name: tag})
+            .then(function (response) {
+                _tags.push(response);
+            })
+    }
+    return _tags;
 }

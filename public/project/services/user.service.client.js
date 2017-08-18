@@ -79,6 +79,21 @@
             return $http.post(url);
         }
 
+        function getAllMovies(uid) {
+            var url = "/api/user/getAll/movies/" + uid;
+            return $http.get(url);
+        }
+
+        function getAllTags(uid) {
+            var url = "/api/user/getAll/tags/" + uid;
+            return $http.get(url);
+        }
+
+        function getAllUsers(uid) {
+            var url = "/api/user/getAll/users/" + uid;
+            return $http.get(url);
+        }
+
         return {
             "createUser": createUser,
             "findUserById": findUserById,
@@ -96,7 +111,10 @@
             "follow": follow,
             "unfollow": unfollow,
             "findAllUsers": findAllUsers,
-            "logout": logout
+            "logout": logout,
+            "getAllMovies": getAllMovies,
+            "getAllTags": getAllTags,
+            "getAllUsers": getAllUsers
         }
     }
 })();
