@@ -1,12 +1,12 @@
 <div ng-include="'./views/generalPages/templates/navbar-component.view.client.html'"></div>
 
 <div class="main full">
-    <div class="left">
-        <h1 class="inline">{{model.user.username}}'s Profile</h1>
-        <div class="alert alert-success noWrapping"
-             ng-show="model.updateMessage">
-            {{model.updateMessage}}
-        </div>
+    <div>
+        <h1 class="inline">{{model.other.username}}'s Profile</h1>
+        <a ng-show="model.user"
+           ng-click="model.follow()"
+           class="btn btn-block btn-primary glyphSize inline right">
+            <span class="glyphicon glyphicon-plus"></span></a>
     </div>
     <div class="left">
         <form method="post" action="/api/update" enctype="multipart/form-data">
@@ -15,34 +15,30 @@
                    id="username"
                    class="form-control"
                    type="text"
-                   ng-model="model.user.username">
-            <label for="password">Password</label>
-            <input name="Password"
-                   id="password"
-                   class="form-control"
-                   type="password"
-                   ng-model="model.user.password">
+                   ng-model="model.other.username"
+                   readonly="readonly">
             <label for="firstName">First Name</label>
             <input name="First Name"
                    id="firstName"
                    class="form-control"
                    type="text"
-                   ng-model="model.user.firstName">
+                   ng-model="model.other.firstName"
+                   readonly="readonly">
             <label for="lastName">Last Name</label>
             <input name="Last Name"
                    id="lastName"
                    class="form-control"
                    type="text"
-                   ng-model="model.user.lastName">
+                   ng-model="model.other.lastName"
+                   readonly="readonly">
             <label for="email">E-mail</label>
             <input name="E-mail"
                    id="email"
                    class="form-control"
                    type="email"
-                   ng-model="model.user.email">
+                   ng-model="model.other.email"
+                   readonly="readonly">
         </form>
-        <a ng-click="model.updateCurr(model.user)" class="btn btn-block btn-primary">Update Profile</a>
-        <a ng-click="model.deleteCurr(model.user)" class="btn btn-block btn-primary">Delete Profile</a>
     </div>
 
     <div class="right">
