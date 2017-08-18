@@ -21,8 +21,11 @@
                 .then(function (response) {
                     vm.tagMovie = response.data;
                     if(vm.tagMovie === null) {
-                        vm.tagMovie = movieService.createMovie(vm.mid, vm.movie.title).mid
-                            .then(getTags());
+                        movieService.createMovie(vm.mid, vm.movie.title)
+                            .then(function (response){
+                                vm.tagMovie = response.data;
+                                getTags()
+                        })
                     } else {
                         getTags();
                     }
