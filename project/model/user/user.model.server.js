@@ -64,7 +64,8 @@ function updateUser(uid, user) {
         password:       user.password,
         firstName:      user.firstName,
         lastName:       user.lastName,
-        email:          user.email
+        email:          user.email,
+        isAdmin:        user.isAdmin
     }})
 }
 

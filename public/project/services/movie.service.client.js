@@ -51,10 +51,19 @@
             return $http.get(url);
         }
 
-
         function removeTag(mid, tid) {
             var url = "/api/movie/" + mid + "/removeTag/" + tid;
             return $http.put(url);
+        }
+
+        function deleteMovie(mid) {
+            var url = "/api/movie/delete/" + mid;
+            return $http.delete(url);
+        }
+
+        function updateMovie(mid, movie) {
+            var url = "/api/movie/update/" + mid;
+            return $http.put(url, movie);
         }
 
         return {
@@ -66,7 +75,9 @@
             "removeFav": removeFav,
             "addTag": addTag,
             "findAllMovies": findAllMovies,
-            "removeTag": removeTag
+            "removeTag": removeTag,
+            "deleteMovie": deleteMovie,
+            "updateMovie": updateMovie
         }
     }
 })();

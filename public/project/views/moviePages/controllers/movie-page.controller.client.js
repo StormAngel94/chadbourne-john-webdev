@@ -9,6 +9,7 @@
     function detailsController($routeParams, $location, user, movieService, userService, tagService) {
         var vm = this;
         vm.user = user;
+        vm.tags = [];
 
         function init() {
             vm.mid = $routeParams["mid"];
@@ -20,11 +21,25 @@
                 .then(function (response) {
                     vm.tagMovie = response.data;
                     if(vm.tagMovie === null) {
-                        movieService.createMovie(vm.mid, vm.movie.title);
+                        vm.tagMovie = movieService.createMovie(vm.mid, vm.movie.title).mid
+                            .then(getTags());
+                    } else {
+                        getTags();
                     }
+
                 })
         }
         init();
+
+        function getTags() {
+            for(var t in vm.tagMovie.tags) {
+                var tag = vm.tagMovie.tags[t];
+                tagService.findTag(tag)
+                    .then(function (response) {
+                        vm.tags.push(response.data);
+                    })
+            }
+        }
 
         vm.goToLogin = goToLogin;
         vm.goToRegister = goToRegister;

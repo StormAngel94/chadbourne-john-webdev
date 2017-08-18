@@ -4,38 +4,22 @@
 (function () {
     angular
         .module("tagMovies")
-        .controller("adminUserController", adminUserController);
+        .controller("adminMovieController", adminMovieController);
 
-    function adminUserController($location, $routeParams, userService, movieService, tagService, user) {
+    function adminMovieController($location, $routeParams, userService, movieService, tagService, user) {
         var vm = this;
         vm.user = user;
-        vm.otherId = $routeParams["uid"];
-        vm.movies = [];
+        vm.mid = $routeParams["mid"];
         vm.tags = [];
-        vm.users = [];
         function init() {
-            userService.findUserById(vm.otherId)
+            movieService.findMovie(vm.mid)
                 .then(function (response) {
-                    vm.other = response.data;
-                    for(var m in vm.other.movies) {
-                        var mid =  vm.other.movies[m];
-                        movieService.findMovie(mid)
-                            .then(function (resp) {
-                                vm.movies.push(resp.data);
-                            })
-                    }
-                    for(var t in vm.other.tags) {
-                        var tid =  vm.other.tags[t];
-                        tagService.findTagById(tid)
+                    vm.movie = response.data;
+                    for(var t in vm.movie.tags) {
+                        var tid = vm.movie.tags[t];
+                        tagService.findTag(tid)
                             .then(function (resp) {
                                 vm.tags.push(resp.data);
-                            })
-                    }
-                    for(var u in vm.other.users) {
-                        var uid =  vm.other.users[u];
-                        userService.findUserByIdSafe(uid)
-                            .then(function (resp) {
-                                vm.users.push(resp.data);
                             })
                     }
                 })
@@ -78,9 +62,9 @@
         }
 
         function goToMovie(movie) {
-            userService.removeMovie(vm.otherId, movie.tmdbId)
+            tagService.removeMovie(vm.tag._id, movie.tmdbId)
                 .then(function () {
-                    movieService.removeFav(movie.tmdbId)
+                    movieService.removeTag(movie.tmdbId, vm.tag.name)
                         .then(function () {
                             return location.reload();
                         });
@@ -88,9 +72,9 @@
         }
 
         function goToTag(tag) {
-            userService.removeTag(vm.other._id, tag._id)
+            movieService.removeTag(vm.movie.tmdbId, tag.name)
                 .then(function () {
-                    tagService.removeFav(tag._id)
+                    tagService.removeMovie(tag._id, vm.movie.tmdbId)
                         .then(function () {
                             return location.reload();
                         });
@@ -112,8 +96,8 @@
             $location.url("/search/" + criteria.searchType + "/" + criteria.searchText)
         }
 
-        function submit(other) {
-            userService.updateUser(vm.otherId, other);
+        function submit(tag) {
+            movieService.updateMovie(vm.mid, vm.movie);
             vm.updateMessage = "Update Successful!"
         }
 
@@ -122,7 +106,7 @@
         }
 
         function doDelete() {
-            tagService.deleteTag(vm.tid);
+            movieService.deleteMovie(vm.mid);
             $location.url("/ADMIN/base");
         }
     }

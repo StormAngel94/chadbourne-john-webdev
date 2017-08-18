@@ -4,9 +4,9 @@
         <img src="http://image.tmdb.org/t/p/w185{{model.movie.poster_path}}"
              class="reactive-pic">
 
-        <a ng-click="model.goToTag(tag)"
-           ng-repeat="tag in model.tagMovie.tags"
-           class="btn btn-block btn-primary general">{{tag}}</a>
+        <a ng-click="model.goToTag(tag._id)"
+           ng-repeat="tag in model.tags"
+           class="btn btn-block btn-primary general">{{tag.name}}</a>
     </div>
 
     <div>

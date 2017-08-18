@@ -12,6 +12,8 @@ movieModel.removeTag = removeTag;
 movieModel.findMovie = findMovie;
 movieModel.createMovie = createMovie;
 movieModel.findAllMovies = findAllMovies;
+movieModel.deleteMovie = deleteMovie;
+movieModel.updateMovie = updateMovie;
 
 module.exports = movieModel;
 
@@ -58,4 +60,15 @@ function createMovie(mid, title) {
 
 function findAllMovies() {
     return movieModel.find({});
+}
+
+function deleteMovie(mid) {
+    return movieModel.remove({tmdbId: mid});
+}
+
+function updateMovie(mid, movie) {
+    return movieModel.update({tmdbId: mid}, {$set: {
+        title:      movie.title,
+        favs:       movie.favs
+    }});
 }

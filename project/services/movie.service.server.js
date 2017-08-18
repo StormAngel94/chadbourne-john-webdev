@@ -13,6 +13,8 @@ module.exports = function () {
     app.put("/api/movie/removeFav/:mid", removeFav);
     app.put("/api/movie/:mid/addTag/:tag" , addTag);
     app.put("/api/movie/:mid/removeTag/:tid", removeTag);
+    app.put("/api/movie/update/:mid", updateMovie);
+    app.delete("/api/movie/delete/:mid", deleteMovie)
 };
 
 function findMovie(req, res) {
@@ -68,6 +70,23 @@ function removeTag(req, res) {
     var mid = req.params.mid;
     var tid = req.params.tid;
     movieModel.removeTag(mid, tid)
+        .then(function (movie) {
+            res.json(movie);
+        })
+}
+
+function deleteMovie(req, res) {
+    var mid = req.params.mid;
+    movieModel.deleteMovie(mid)
+        .then(function (movie) {
+            res.json(movie);
+        })
+}
+
+function updateMovie(req, res) {
+    var mid = req.params.mid;
+    var movie = req.body;
+    movieModel.updateMovie(mid, movie)
         .then(function (movie) {
             res.json(movie);
         })
